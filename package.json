@@ -14,7 +14,7 @@
     "empty-cache": "lerna run empty-cache"
   },
   "devDependencies": {
-    "lerna": "^3.14.1",
-    "rimraf": "^2.6.3"
+    "lerna": "^9.0.3",
+    "rimraf": "^6.1.2"
   }
 }
