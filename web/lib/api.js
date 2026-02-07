@@ -1,67 +1,46 @@
-import { client, imageBuilder } from './sanity';
+import fs from 'fs';
+import path from 'path';
 
-export { imageBuilder };
+const imageExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif']);
 
-export const fetchWork = async () => {
-  const result = (
-    await client.fetch(
-      `*[!(_id in path("drafts.**")) &&_type == 'arbeit' && showInWork == true] | order(_createdAt desc) { _id, title, description, 'imageUrl': image.asset->url }`
-    )
-  ).map((entry) => ({
-    ...entry,
-    imageUrl: entry.imageUrl + '?w=1750&h=1750&fit=clip&auto=format',
-    thumbnailUrl: entry.imageUrl + '?w=250&h=250&fit=crop&auto=format',
+const titleFromFilename = (filename) =>
+  filename
+    .replace(/\.[^/.]+$/, '')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const buildWorkItems = (category) => {
+  const directory = path.join(process.cwd(), 'public', 'images', category);
+  if (!fs.existsSync(directory)) {
+    return [];
+  }
+
+  const files = fs
+    .readdirSync(directory)
+    .filter((file) => imageExtensions.has(path.extname(file).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+
+  return files.map((file) => ({
+    title: titleFromFilename(file),
+    description: '',
+    imageUrl: `/images/${category}/${file}`,
+    thumbnailUrl: `/images/${category}/${file}`,
   }));
-
-  return {
-    work: result,
-  };
 };
 
-export const fetchTadelakt = async () => {
-  const result = (
-    await client.fetch(
-      `*[!(_id in path("drafts.**")) &&_type == 'arbeit' && showInTadelakt == true] | order(_createdAt desc) { _id, title, description, 'imageUrl': image.asset->url }`
-    )
-  ).map((entry) => ({
-    ...entry,
-    imageUrl: entry.imageUrl + '?w=1750&h=1750&fit=clip&auto=format',
-    thumbnailUrl: entry.imageUrl + '?w=250&h=250&fit=crop&auto=format',
-  }));
+export const fetchWork = async () => ({
+  work: buildWorkItems('arbeit'),
+});
 
-  return {
-    work: result,
-  };
-};
+export const fetchTadelakt = async () => ({
+  work: buildWorkItems('tadelakt'),
+});
 
-export const fetchLehmputz = async () => {
-  const result = (
-    await client.fetch(
-      `*[!(_id in path("drafts.**")) &&_type == 'arbeit' && showInLehmputz == true] | order(_createdAt desc) { _id, title, description, 'imageUrl': image.asset->url }`
-    )
-  ).map((entry) => ({
-    ...entry,
-    imageUrl: entry.imageUrl + '?w=1750&h=1750&fit=clip&auto=format',
-    thumbnailUrl: entry.imageUrl + '?w=250&h=250&fit=crop&auto=format',
-  }));
+export const fetchLehmputz = async () => ({
+  work: buildWorkItems('lehmputz'),
+});
 
-  return {
-    work: result,
-  };
-};
-
-export const fetchHerstellungUndRestaurierung = async () => {
-  const result = (
-    await client.fetch(
-      `*[!(_id in path("drafts.**")) &&_type == 'arbeit' && showInHerstellungUndRestaurierung == true] | order(_createdAt desc) { _id, title, description, 'imageUrl': image.asset->url }`
-    )
-  ).map((entry) => ({
-    ...entry,
-    imageUrl: entry.imageUrl + '?w=1750&h=1750&fit=clip&auto=format',
-    thumbnailUrl: entry.imageUrl + '?w=250&h=250&fit=crop&auto=format',
-  }));
-
-  return {
-    work: result,
-  };
-};
+export const fetchHerstellungUndRestaurierung = async () => ({
+  work: buildWorkItems('herstellung-und-restaurierung'),
+});

@@ -14,7 +14,6 @@ import styles from './index.module.sass';
 export const getStaticProps = async () => {
   return {
     props: await fetchWork(),
-    revalidate: 1,
   };
 };
 
