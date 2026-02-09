@@ -1,5 +1,6 @@
-@import styles/variables.sass
-@import "include-media/dist/_include-media.scss"
+@use "sass:math"
+@use "styles/variables" as *
+@use "styles/media" as *
 
 .footerNavigation
   margin-top: 30px
@@ -22,7 +23,7 @@
     width: 40%
     &:first-child
       width: 60%
-    font-size: $defaultDesktopFontSize / 1.075
+    font-size: math.div($defaultDesktopFontSize, 1.075)
     line-height: $defaultDesktopLineHeight * 1.075
     letter-spacing: $defaultDesktopLetterSpacing
   @include media(">tablet")

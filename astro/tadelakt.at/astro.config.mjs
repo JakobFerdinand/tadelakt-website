@@ -12,14 +12,15 @@ export default defineConfig({
   vite: {
     css: {
       preprocessorOptions: {
-        // Keep legacy `@import styles/...` Sass paths working.
         sass: {
-          api: 'legacy',
-          includePaths: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'src')],
+          api: 'modern',
+          quietDeps: true,
+          loadPaths: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'src')],
         },
         scss: {
-          api: 'legacy',
-          includePaths: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'src')],
+          api: 'modern',
+          quietDeps: true,
+          loadPaths: [path.join(path.dirname(fileURLToPath(import.meta.url)), 'src')],
         },
       },
     },
