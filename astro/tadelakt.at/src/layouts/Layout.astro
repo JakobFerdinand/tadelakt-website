@@ -11,6 +11,7 @@ const {
   headerBackground = null,
   title = null,
   renderHeader = true,
+  renderFooter = true,
 } = Astro.props;
 
 const hasHeaderSlot = Astro.slots.has('header');
@@ -37,7 +38,7 @@ const hasHeaderSlot = Astro.slots.has('header');
         </div>
       </div>
 
-      <Footer />
+      {renderFooter ? <Footer /> : null}
     </div>
   </body>
 </html>

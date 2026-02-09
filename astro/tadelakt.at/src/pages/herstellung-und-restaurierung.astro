@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+
+import { getWork } from '../lib/gallery';
+
+import styles from './index.module.sass';
+
+const description =
+  'Nat\u00fcrliche Materialien haben einen Alterswert, den wir sowohl sch\u00fctzen als auch \u00e4sthetisch hervorheben m\u00f6chten. Die Restaurierung und Konservierung mineralischer Architekturoberfl\u00e4chen f\u00fchren wir mit Respekt vor der Sch\u00f6nheit des Materials und im Wissen um die historischen Techniken ihrer Herstellung aus.';
+
+const work = getWork('herstellung-und-restaurierung');
+---
+
+<Layout
+  title="Herstellung und Restaurierung"
+  headerBackground={'#7d8387 url("/theme/images/alternative-header-background.png")'}
+>
+  <Meta
+    slot="head"
+    title="Herstellung und Restaurierung"
+    description={description}
+  />
+
+  <a href="/" class={styles.more}>
+    <p>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        aria-hidden="true"
+        focusable="false"
+        style="vertical-align: sub; width: 20px; height: 20px; margin-top: 15px;"
+      >
+        <path
+          fill="currentColor"
+          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+        ></path>
+      </svg>
+      {' '}Zur&uuml;ck
+    </p>
+  </a>
+
+  <div class:list={[styles.container, styles.centerChilds]}>
+    <div class:list={[styles.twoThird, styles.left]}>
+      <h2>Herstellung und Restaurierung</h2>
+      <p class={styles.subHeading}>mineralischer Architekturoberfl&auml;chen</p>
+      <p>
+        Nat&uuml;rliche Materialien haben einen Alterswert, den wir sowohl
+        sch&uuml;tzen als auch &auml;sthetisch hervorheben m&ouml;chten. Die
+        Restaurierung und Konservierung mineralischer Architekturoberfl&auml;chen
+        f&uuml;hren wir mit Respekt vor der Sch&ouml;nheit des Materials und im
+        Wissen um die historischen Techniken ihrer Herstellung aus.
+      </p>
+      <p>
+        Mit Methoden der Steinrestaurierung lassen sich fehlerhafte
+        Sichtbetonoberfl&auml;chen entscheidend verbessern (Schalungsfehler,
+        Lufteinschl&uuml;sse etc.).
+      </p>
+      <p>
+        F&uuml;r den Innenberech bieten wir die Umstellung von Dispersions- oder
+        Sikikatoberfl&auml;chen auf Kalksysteme ohne Acrylate an.
+      </p>
+    </div>
+  </div>
+
+  <br />
+
+  <div
+    style="position: relative; width: 100%; padding-bottom: 50px; overflow: auto;"
+  >
+    {work.map((item) => (
+      <div class={styles.gridItem}>
+        <a href={item.imageUrl}>
+          <img src={item.thumbnailUrl} class={styles.gridImage} alt={item.title} />
+        </a>
+      </div>
+    ))}
+  </div>
+</Layout>

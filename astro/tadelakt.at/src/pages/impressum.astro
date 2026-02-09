@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+
+import styles from './index.module.sass';
+
+const description =
+  'Rechtliche Informationen wem diese Website geh\u00f6rt und wer zust\u00e4ndig ist f\u00fcr Informationen und Ausk\u00fcnfte.';
+---
+
+<Layout
+  title="Impressum"
+  headerBackground={'#7b2614 url("/theme/images/alternative-header-background.png")'}
+>
+  <Meta slot="head" title="Impressum" description={description} />
+
+  <div class={styles.container}>
+    <p class={styles.h2downText}>Name:</p>
+    <p>Manfred Wegenschimmel</p>
+    <p class={styles.h2downText}>Unternehmensgegenstand:</p>
+    <p>Freiberuflicher Restaurator und K&uuml;nstler</p>
+    <p class={styles.h2downText}>T&auml;tigkeiten: </p>
+    <p>
+      Restaurierungen und historisch mineralische Architekturoberfl&auml;chen,
+      k&uuml;nstlerische und freischaffende T&auml;tigkeiten
+    </p>
+    <p class={styles.h2downText}>Adresse: </p>
+    <p>Florianigasse 5</p>
+    <p>4943 Geinberg</p>
+  </div>
+</Layout>

@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+
+import styles from './index.module.sass';
+
+const description =
+  'Alle rechtlichen Informationen zu unserer Website k\u00f6nnen Sie auf dieser Seite nachlesen.';
+---
+
+<Layout
+  title="Datenschutz"
+  headerBackground={'#7b2614 url("/theme/images/alternative-header-background.png")'}
+>
+  <Meta slot="head" title="Datenschutz" description={description} />
+
+  <div class={styles.container}>
+    <h2>Erkl&auml;rung zur Informationspflicht</h2>
+    <p class={styles.subText}>(Datenschutzerkl&auml;rung)</p>
+    <div>
+      <div>
+        <h3>Kontakt f&uuml;r Fragen und Anliegen zu Datenschutz</h3>
+        <p>Manfred Wegenschimmel</p>
+        <p>Florianigasse 5</p>
+        <p>4943 Geinberg</p>
+        <p>Email: manfred.wegenschimmel@gmail.com</p>
+        <h3>Website</h3>
+        <p>
+          Die Nutzung unserer Website ist grunds&auml;tzlich ohne Angabe Ihrer
+          personenbezogenen Daten m&ouml;glich. Erhoben werden lediglich die von
+          Ihrem Internet-Provider und dem verwendeten Browser mitgeteilten
+          Angaben (IP-Adresse, Datum und Uhrzeit, Name der URL, Referrer-URL,
+          Inhalt der Anforderung, HTTP-Status bzw. Zugriffsstatus, &uuml;bertragene
+          Datenmenge, verwendeter Browser, Betriebssystem, Zugriffsland,
+          Ger&auml;tetyp, Browsersprache und Version des Browsers). Diese Daten
+          werden von uns f&uuml;r die Dauer des Website-Besuchs gespeichert und
+          eine Auswertung erfolgt dabei ausschlie&szlig;lich zu statistischen
+          Zwecken unter Wahrung der Anonymit&auml;t der einzelnen Nutzer. Andere
+          personenbezogene Daten werden weder gespeichert, verarbeitet, noch
+          verkauft. Anonymisierte Daten werden zudem in Logfiles f&uuml;r eine
+          f&uuml;r das System relevante Zeit gespeichert. Die Verwendung dieser
+          Daten hilft uns, einen reibungslosen Verbindungsaufbau und die
+          Systemsicherheit und Stabilit&auml;t unserer Website bereitzustellen
+          und stellt deswegen ein berechtigtes Interesse gem. Artikel 6 Abs 1
+          lit f DSGVO f&uuml;r die Verarbeitung dar. Zudem k&ouml;nnen die oben
+          angef&uuml;hrten Daten unter Umst&auml;nden auf Servern im EU Ausland
+          verarbeitet werden. Dies ist insbesondere dann der Fall, wenn Sie aus
+          dem Ausland auf unsere Website zugreifen, unsere Infrastruktur in der
+          EU gewartet wird oder ein ausl&auml;ndischer Server schneller auf
+          Anfragen antwortet. Das Nutzen eines verteilten Systems auf allen
+          Kontinenten bietet dabei viele Vorteile wie Ausfallsicherheit oder
+          Zugriffszeitoptimierung und stellt ein berechtigtes Interesse dar.
+          Selbstverst&auml;ndlich gilt der oben angef&uuml;hrten Umgang mit Ihren
+          Daten auch f&uuml;r die verwendeten Server im EU Ausland. Nach dem
+          Zugriff auf die Website und der Verarbeitung der oben angef&uuml;hrten
+          Daten kann keine Verbindung mehr zu Ihnen oder Ihrer Person festgestellt
+          werden und somit k&ouml;nnen wir auch keine Datenausk&uuml;nfte oder
+          -&auml;nderungen veranlassen. F&uuml;r das Betreiben der
+          Onlinepr&auml;senzen wird dabei die technische Infrastruktur der Firma
+          Hetzner GmbH
+          (https://www.hetzner.com/legal/terms-and-conditions,
+          https://www.hetzner.com/legal/privacy-policy/) verwendet, mit der ein
+          AV-Vertrag abgeschlossen wurde. Dennoch wird hier explizit darauf
+          hingewiesen, dass Sie das Recht haben auf Auskunft, Berichtigung,
+          Sperrung, L&ouml;schung, &Uuml;bertragung soweit m&ouml;glich oder einem
+          Widerruf einer erteilten Einwilligung sowie Widerspruch zur Verarbeitung
+          der Daten. Des Weiteren ist es Ihnen m&ouml;glich eine Beschwerde bei
+          einer Aufsichtsbeh&ouml;rde einzubringen.
+        </p>
+        <h3><strong>Cookies</strong></h3>
+        <p>Wir verwenden auf dieser Website keine Cookies.</p>
+        <h3><strong>Andere Daten (Kontakt mit uns)</strong></h3>
+        <p>
+          Daten, die zur Kontaktaufnahme notwendig sind, werden abseits der
+          Website in Form von Email- oder Telefonverkehr f&uuml;r die Dauer der
+          Konversation oder zur Bearbeitung zuk&uuml;nftiger Anfragen
+          aufbewahrt. Daten werden dabei nicht ohne Einwilligung ver&ouml;ffentlicht
+          und nur an Sicherheitsbeh&ouml;rden und zust&auml;ndige Gerichte
+          weitergegeben, wenn es zu einer rechtswidrigen Nutzung kommt. Sollten
+          Sie eine L&ouml;schung, &Auml;nderung oder Auskunft der gespeicherten
+          Daten w&uuml;nschen, kontaktieren Sie uns bitte unter den oben
+          angef&uuml;hrten Kontaktdaten.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
