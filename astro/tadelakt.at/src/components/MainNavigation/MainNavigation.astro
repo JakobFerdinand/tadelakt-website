@@ -1,0 +1,47 @@
+---
+import Link from '../Link/Link.astro';
+
+import styles from './MainNavigation.module.sass';
+
+const { lightColors = false } = Astro.props;
+---
+
+<div class:list={[styles.mainNavigation, lightColors && styles.lightColors]}>
+  <div class={styles.menuToggle}></div>
+  <nav class={styles.nav}>
+    <Link href="/" defaultClass={styles.navItem} activeClass={styles.active}>
+      Startseite
+    </Link>
+    <Link href="/arbeit" defaultClass={styles.navItem} activeClass={styles.active}>
+      Arbeit
+    </Link>
+    <Link href="/ueber-uns" defaultClass={styles.navItem} activeClass={styles.active}>
+      &Uuml;ber uns
+    </Link>
+    <Link href="/kontakt" defaultClass={styles.navItem} activeClass={styles.active}>
+      Kontakt
+    </Link>
+  </nav>
+</div>
+
+<script
+  is:inline
+  define:vars={{
+    menuToggleClass: styles.menuToggle,
+    mainNavigationClass: styles.mainNavigation,
+    openClass: styles.open,
+  }}
+>
+  (() => {
+    const menuBtn = document.getElementsByClassName(menuToggleClass)[0];
+    const nav = document.getElementsByClassName(mainNavigationClass)[0];
+    if (!menuBtn || !nav) return;
+    menuBtn.addEventListener(
+      'click',
+      () => {
+        nav.classList.toggle(openClass);
+      },
+      false
+    );
+  })();
+</script>

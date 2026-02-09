@@ -1,0 +1,25 @@
+---
+const {
+  href,
+  as,
+  defaultClass,
+  activeClass,
+  class: className,
+  ...rest
+} = Astro.props;
+
+if (!href) {
+  throw new Error('Link.astro: `href` is required');
+}
+
+const resolvedHref = as ?? href;
+const isActive = Astro.url.pathname === href || (as ? Astro.url.pathname === as : false);
+
+const classes = [className, defaultClass, isActive ? activeClass : null]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<a href={resolvedHref} class={classes} {...rest}>
+  <slot />
+</a>

@@ -1,0 +1,17 @@
+---
+import FooterLogo from '../FooterLogo/FooterLogo.astro';
+import FooterNavigation from '../FooterNavigation/FooterNavigation.astro';
+
+import styles from './Footer.module.sass';
+---
+
+<div class={styles.footer}>
+  <div class={styles.inner}>
+    <div class={styles.footerLogo}>
+      <FooterLogo />
+    </div>
+    <div class={styles.footerNavigation}>
+      <FooterNavigation />
+    </div>
+  </div>
+</div>

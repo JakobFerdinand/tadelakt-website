@@ -1,0 +1,43 @@
+---
+import '../styles/globals.sass';
+
+import Header from '../components/Header/Header.astro';
+import Footer from '../components/Footer/Footer.astro';
+import HeadDependencies from '../components/HeadDependencies/HeadDependencies.astro';
+
+import styles from '../components/Layout/Layout.module.sass';
+
+const {
+  headerBackground = null,
+  title = null,
+  renderHeader = true,
+} = Astro.props;
+
+const hasHeaderSlot = Astro.slots.has('header');
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <HeadDependencies />
+    <slot name="head" />
+  </head>
+  <body>
+    <div class={styles.site}>
+      {hasHeaderSlot ? (
+        <slot name="header" />
+      ) : renderHeader ? (
+        <Header background={headerBackground} title={title} />
+      ) : null}
+
+      <div id="main" class={styles.main}>
+        <div class={styles.center}>
+          <slot />
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  </body>
+</html>

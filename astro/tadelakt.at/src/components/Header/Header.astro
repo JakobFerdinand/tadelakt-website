@@ -1,0 +1,39 @@
+---
+import Logo from '../Logo/Logo.astro';
+import MainNavigation from '../MainNavigation/MainNavigation.astro';
+
+import styles from './Header.module.sass';
+
+const { background = null, title = null } = Astro.props;
+const isBanner = Astro.slots.has('default');
+
+const headerStyle = isBanner && background ? { backgroundImage: background } : undefined;
+const titleBarStyle = !isBanner && background ? { background } : undefined;
+---
+
+<>
+  <div
+    class:list={[styles.header, isBanner && styles.banner]}
+    style={headerStyle}
+  >
+    <div class={styles.inner}>
+      <div class={styles.logo}>
+        <Logo simple={isBanner} />
+      </div>
+      <div class={styles.menu}>
+        <MainNavigation lightColors={isBanner} />
+      </div>
+      <div class={styles.content}>
+        <slot />
+      </div>
+    </div>
+  </div>
+
+  {!isBanner ? (
+    <div class={styles.titleBar} style={titleBarStyle}>
+      <div class={styles.inner}>
+        <span>{title}</span>
+      </div>
+    </div>
+  ) : null}
+</>

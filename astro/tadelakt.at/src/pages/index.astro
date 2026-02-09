@@ -1,17 +1,26 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+import Header from '../components/Header/Header.astro';
 
+import styles from './index.module.sass';
+
+const description =
+  'Herzlich willkommen auf unserer Website! Hier finden eine kurze Beschreibung von unseren Arbeiten im Bereich Tadelakt, Lehmputz, sowie Herstellung und Restaurierung alter W\u00e4nde und Oberfl\u00e4chen. Des weiteren finden Sie hier Bilder von einigen unserer Projekte, welche im Raum Braunau am Inn, Ried im Innkreis bis nach Salzburg durchgef\u00fchrt wurden.';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout renderHeader={false}>
+  <Meta slot="head" title="Startseite" description={description} />
+
+  <Header slot="header">
+    <div class={styles.center}>
+      <img
+        src="/theme/images/header-logo.png"
+        alt="I-Ging 64 Symbol"
+        style={{ width: '100%' }}
+      />
+    </div>
+  </Header>
+
+  <div class={styles.container}></div>
+</Layout>
