@@ -1,0 +1,27 @@
+/* abel-regular - latin */
+@font-face {
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/theme/fonts/abel-v18-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+  url('/theme/fonts/abel-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/theme/fonts/abel-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('/theme/fonts/abel-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('/theme/fonts/abel-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('/theme/fonts/abel-v18-latin-regular.svg#Abel') format('svg'); /* Legacy iOS */
+}
+
+/* encode-sans-semi-condensed-regular - latin */
+@font-face {
+  font-family: 'Encode Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/theme/fonts/encode-sans-semi-condensed-v10-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+  url('/theme/fonts/encode-sans-semi-condensed-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/theme/fonts/encode-sans-semi-condensed-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('/theme/fonts/encode-sans-semi-condensed-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('/theme/fonts/encode-sans-semi-condensed-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('/theme/fonts/encode-sans-semi-condensed-v10-latin-regular.svg#EncodeSansSemiCondensed') format('svg'); /* Legacy iOS */
+}

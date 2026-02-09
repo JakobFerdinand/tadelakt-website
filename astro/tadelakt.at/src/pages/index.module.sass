@@ -1,0 +1,285 @@
+@import styles/fonts
+@import ~include-media/dist/_include-media.scss
+@import styles/variables
+
+.center
+  max-width: 400px
+  margin: 90px auto 0
+  padding: 0
+
+.listing
+  // max-width: 600px
+  margin: 0 auto
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  border: 1px solid #AAAAAA
+  margin-top: 20px
+  padding: 15px
+  & .image
+    flex: 1
+    & img
+      width: 120px
+      margin: 0 auto
+      display: flex
+  & .text
+    margin-top: 20px
+    flex: 3
+    & h3
+      margin: 0
+    @include media(">=iphone6")
+      padding-left: 10px
+    @include media(">=iphone6Plus")
+      padding-left: 15px
+    @include media(">=bigPhone")
+      padding-left: 20px
+    @include media(">tablet")
+      padding-left: 0
+  @include media(">=iphone6Plus")
+    flex-direction: row
+    padding: 15px
+
+
+.container
+  & a
+    text-decoration: inherit
+    text-underline-position: inherit
+    color: inherit
+  &.childrenMarginTop
+    @include media(">tablet")
+      margin-top: 0
+    & .oneThird
+      margin-top: 50px
+  flex-wrap: wrap
+  margin-top: 20px
+  @include media(">bigPhone")
+    &.rowContainer
+      display: flex
+      flex-direction: row
+    margin-top: 20px
+  @include media(">tablet")
+    margin-top: 40px
+  &:last-child
+    margin-bottom: 60px
+    @include media(">bigPhone")
+      margin-bottom: 20px
+    @include media(">tablet")
+      margin-bottom: 40px
+  &.centerChilds
+    align-items: center
+    justify-content: center
+  &.extraSpace
+    margin-top: 60px
+    @include media(">bigPhone")
+      margin-top: 50px
+  & img
+    width: 80%
+    margin: 0 auto
+    display: block
+
+.twoGrid
+  text-align: center
+  @include media(">bigPhone")
+    display: flex
+    flex-direction: row
+
+.oneThird
+  flex: 1
+  align-items: center
+  justify-content: center
+  @include media(">bigPhone")
+    padding-left: 8px
+    padding-right: 8px
+    width: 33%
+    flex: none
+    &.withBorder
+      &:nth-child(3n + 1)
+        margin-left: 0
+      width: calc(33% - 10px)
+      border: 1px solid #c0c0c0
+      padding: 20px
+      margin-left: 15px
+
+.oneHalf
+  flex: 1
+  align-items: center
+  justify-content: center
+  @include media(">bigPhone")
+    padding-left: 8px
+    padding-right: 8px
+    width: 50%
+    flex: none
+
+.twoThird
+  flex: 2
+  align-items: center
+  justify-content: center
+
+.left
+  order: 1
+
+.right
+  order: 2
+
+
+
+.h2upper
+  font-size: 12px
+  color: $defaultFontColor
+  vertical-align: super
+
+h3.big
+  font-size: $h2FontSize
+  margin-bottom: 0
+
+.subText
+  font-family: $specialFont
+  font-size: 20px
+  line-height: 28px
+
+.subHeading
+  font-family: $specialFont
+  font-size: 20px
+  line-height: 28px
+  margin: 0
+  background-color: $primaryColor
+  color: white
+  display: inline-block
+  padding: 5px
+
+.noMargin
+  margin: 0
+
+.marginBottom
+  margin-bottom: 50px
+  @include media(">bigPhone")
+    margin-bottom: 0
+
+.mobileMarginTop
+  margin-top: 50px
+  @include media(">bigPhone")
+    margin-top: 30px
+  @include media(">tablet")
+    margin-top: 0
+
+
+.smallImage img
+  width: 50%
+  @include media(">bigPhone")
+    width: 80%
+
+.smallerImage img
+  width: 50%
+  @include media(">iphone6")
+    width: 40%
+  @include media(">bigPhone")
+    width: 65%
+
+.extraSmallImage img
+  width: 30%
+  @include media(">bigPhone")
+    width: 50%
+
+.h2downText
+  color: $h2Color
+
+.more
+  text-decoration: underline
+  text-underline-position: under
+  color: inherit
+
+.divider
+  margin-top: 50px
+
+.icons
+  & span
+    @include media(">=tablet")
+      margin-left: 5px
+  & a
+    text-decoration: underline
+  & p
+    margin-top: 20px
+    &:first-child
+      margin-top: 0
+  text-align: center
+  @include media(">=tablet")
+    padding-left: 80px
+    text-align: left
+  @include media(">=desktop")
+    padding-left: 100px
+
+.iconText
+  @include media(">=tablet")
+    margin-top: 50px
+    margin-bottom: 50px
+
+.icon
+  display: block
+  color: $primaryColor
+  width: 35px
+  margin: 0 auto
+  margin-bottom: 2px
+  @include media(">=tablet")
+    margin-right: 10px
+    float: left
+
+.gridItem
+  position: relative
+  width: calc(50% - 5px)
+  float: left
+  margin-bottom: 10px
+  margin-left: 10px
+  &:nth-child(2n + 1)
+    margin-left: 0
+  &:after
+    content: ""
+    display: block
+    padding-bottom: 100%
+  @include media(">=iphone6Plus")
+    width: calc(33% - 7px)
+    &:nth-child(2n + 1)
+      margin-left: 10px
+    &:nth-child(3n + 1)
+      margin-left: 0
+  @include media(">=tablet")
+    width: calc(25% - 8px)
+    &:nth-child(3n + 1)
+      margin-left: 10px
+    &:nth-child(4n + 1)
+      margin-left: 0
+
+.gridImage
+  position: absolute
+  width: 100%
+  height: 100%
+  object-fit: cover
+
+.myMasonryGrid
+  display: flex
+  margin-left: -20px
+  width: auto
+  margin-top: 20px
+
+.myMasonryGridColumn
+  padding-left: 20px
+  background-clip: padding-box
+  & > div
+    border: 1px solid rgba(60, 60, 60, 0.5)
+    margin-bottom: 20px
+    position: relative
+    & img
+      width: 100%
+      display: block
+
+.description
+  position: absolute
+  display: block
+  width: 100%
+  box-sizing: border-box
+  bottom: 0
+  height: auto
+  padding: 10px
+  color: #fff
+  background-color: rgba(60, 60, 60, 0.5)
+

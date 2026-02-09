@@ -1,0 +1,44 @@
+@import ~include-media/dist/_include-media.scss
+@import styles/variables
+
+.site
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+  background-color: #ffffff
+  overflow: hidden
+  @include media(">bigPhone")
+    min-width: 700px
+  @include media(">tablet")
+    min-width: 960px
+
+.main
+  flex: 1
+  display: flex
+  justify-content: center
+  padding-left: 20px
+  padding-right: 20px
+  @include media(">iphone6Plus")
+    padding-left: 50px
+    padding-right: 50px
+
+// Colors
+$bg-color: #ffffff
+$dot-color: hsl(256,33%,70%)
+
+// Dimensions
+$dot-size: 1px
+$dot-space: 22px
+
+.center
+  z-index: 3
+  max-width: 960px
+  width: 100%
+  box-sizing: border-box
+  @include media(">bigPhone")
+    padding-left: 40px
+    padding-right: 40px
+
+.site
+  background-image: url("/theme/images/background.png")
+
