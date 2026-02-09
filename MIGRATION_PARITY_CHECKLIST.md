@@ -1,6 +1,8 @@
 # Migration Parity Checklist (Phase 0)
 
-Goal: verify the Astro migration matches the current Next.js site (content + behavior) without changing URLs or assets.
+Goal: verify the Astro site matches the legacy Next.js site (content + behavior) without changing URLs or assets.
+
+Astro in `astro/tadelakt.at/` is the primary site; `web/` is kept for rollback/reference.
 
 Source of truth for this checklist: `web/pages/*.js` and referenced components/assets.
 
@@ -94,21 +96,20 @@ Run both sites locally and compare the same routes at a few breakpoints.
 
 ```
 cd web
-<pkgmgr> install
-<pkgmgr> run dev
+yarn install
+yarn dev
 ```
 
 2) Start Astro (target)
 
 ```
 cd astro/tadelakt.at
-<pkgmgr> install
-<pkgmgr> run dev
+pnpm install
+pnpm dev
 ```
 
 Notes:
 
-- `<pkgmgr>` can be `npm`, `pnpm`, `yarn`, or `bun` (use what the repo already uses in your environment).
 - Default dev ports are typically Next `http://localhost:3000` and Astro `http://localhost:4321`.
 
 3) Compare pages
