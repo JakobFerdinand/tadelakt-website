@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Meta from '../components/Meta/Meta.astro';
+import Lightbox from '../components/Lightbox/Lightbox.astro';
 
 import { getWork } from '../lib/gallery';
 
@@ -63,12 +64,14 @@ const work = getWork('lehmputz');
   <div
     style="position: relative; width: 100%; padding-bottom: 50px; overflow: auto;"
   >
-    {work.map((item) => (
+    {work.map((item, index) => (
       <div class={styles.gridItem}>
-        <a href={item.imageUrl}>
+        <a href={item.imageUrl} data-lightbox-index={index}>
           <img src={item.thumbnailUrl} class={styles.gridImage} alt={item.title} />
         </a>
       </div>
     ))}
   </div>
+
+  <Lightbox id="lightbox" items={work} />
 </Layout>
