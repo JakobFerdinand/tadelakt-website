@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "astro": "^5.17.1",
+    "include-media": "^2.0.0",
+    "sass": "^1.97.3"
   }
 }
