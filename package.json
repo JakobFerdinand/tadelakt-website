@@ -12,5 +12,8 @@
     "astro": "^5.17.3",
     "include-media": "^2.0.0",
     "sass": "^1.97.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6"
   }
 }
