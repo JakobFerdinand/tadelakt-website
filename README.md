@@ -1,4 +1,4 @@
-# tadelakt.at (Astro)
+# tadelakt.at
 
 This is the primary site for tadelakt.at, implemented in Astro and built as static output to `dist/`.
 
