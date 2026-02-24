@@ -7,15 +7,13 @@ This is the primary site for tadelakt.at, implemented in Astro and built as stat
 From the repo root:
 
 ```sh
-pnpm -C astro/tadelakt.at install
-pnpm -C astro/tadelakt.at dev
+pnpm install
+pnpm dev
 ```
 
 Build + preview:
 
 ```sh
-pnpm -C astro/tadelakt.at build
-pnpm -C astro/tadelakt.at preview
+pnpm build
+pnpm preview
 ```
-
-Legacy Next.js lives in `web/` and is kept for rollback/reference.
