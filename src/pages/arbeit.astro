@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+import Lightbox from '../components/Lightbox/Lightbox.astro';
+
+import { getWork } from '../lib/gallery';
+
+import styles from './index.module.sass';
+
+const description =
+  'Eine kleiner Ausschnitt unserer Projekte und Arbeiten. Von Oberfl\u00e4chenverputz in B\u00e4dern bis zur Verziehrung von Gegenst\u00e4nden und andere Kunstwerke finden Sie einen groben \u00dcberblick.';
+
+const work = getWork('arbeit');
+---
+
+<Layout
+  title="Arbeit und Projekte"
+  headerBackground={'#7b2614 url("/theme/images/alternative-header-background.png")'}
+>
+  <Meta slot="head" title="Arbeit" description={description} />
+
+  <div class:list={[styles.container, styles.centerChilds]}>
+    <div class:list={[styles.twoThird, styles.left]}>
+      <h2>Ein Ausschnitt</h2>
+      <p>Die Bilder k&ouml;nnen per Klick vergr&ouml;&szlig;ert werden.</p>
+    </div>
+  </div>
+
+  <br />
+
+  <div
+    style="position: relative; width: 100%; padding-bottom: 50px; overflow: auto;"
+  >
+    {work.map((item, index) => (
+      <div class={styles.gridItem}>
+        <a href={item.imageUrl} data-lightbox-index={index}>
+          <img src={item.thumbnailUrl} class={styles.gridImage} alt={item.title} />
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <Lightbox id="lightbox" items={work} />
+</Layout>

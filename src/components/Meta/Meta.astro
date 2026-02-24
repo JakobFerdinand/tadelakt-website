@@ -1,0 +1,30 @@
+---
+const { title, description } = Astro.props;
+
+const siteUrl = 'https://www.tadelakt.at';
+const siteName = 'mao | mineralische architektur oberfl\u00e4chen';
+const ogImageUrl = 'https://www.tadelakt.at/media/images/website_image.jpg';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'mao | mineralische architektur oberfl\u00e4chen',
+  url: siteUrl,
+};
+---
+
+{title ? <title>{title}</title> : null}
+{description ? <meta name="description" content={description} /> : null}
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="de_AT" />
+<meta property="og:url" content={siteUrl} />
+<meta property="og:site_name" content={siteName} />
+{title ? <meta property="og:title" content={title} /> : null}
+{description ? <meta property="og:description" content={description} /> : null}
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:alt" content="Logo mao" />
+
+<script type="application/ld+json" is:inline>
+  {JSON.stringify(jsonLd)}
+</script>

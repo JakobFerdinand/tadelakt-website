@@ -1,0 +1,46 @@
+---
+import Link from '../Link/Link.astro';
+
+import styles from './FooterNavigation.module.sass';
+---
+
+<div class={styles.footerNavigation}>
+  <ul>
+    <li>
+      <span>Manfred Wegenschimmel</span>
+    </li>
+    <li>
+      <span>Florianigasse 5, 4943 Geinberg</span>
+    </li>
+    <li>
+      <span>
+        <a href="tel:+436766258629">Tel.: +43 676 625 86 29</a>
+      </span>
+    </li>
+    <li>
+      <span>IBAN: AT20 4480 0300 1690 0100</span>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <Link href="/ueber-uns" defaultClass={styles.menuEntry}>
+        <span>&Uuml;ber uns</span>
+      </Link>
+    </li>
+    <li>
+      <Link href="/kontakt" defaultClass={styles.menuEntry}>
+        <span>Kontakt</span>
+      </Link>
+    </li>
+    <li>
+      <Link href="/impressum" defaultClass={styles.menuEntry}>
+        <span>Impressum</span>
+      </Link>
+    </li>
+    <li>
+      <Link href="/datenschutz" defaultClass={styles.menuEntry}>
+        <span>Datenschutz</span>
+      </Link>
+    </li>
+  </ul>
+</div>

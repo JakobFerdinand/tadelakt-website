@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+import Lightbox from '../components/Lightbox/Lightbox.astro';
+
+import { getWork } from '../lib/gallery';
+
+import styles from './index.module.sass';
+
+const description =
+  'Diese marokkanische Kalkputztechnik verbindet \u00c4sthetik und Wirksamkeit. Aus leicht hydraulischem Kalkm\u00f6rtel hergestellt und mit allen kalkechten Pigmenten f\u00e4rbbar, lassen sich R\u00e4ume mit Tadelakt fugenlos und monolithisch gestalten.';
+
+const work = getWork('tadelakt');
+---
+
+<Layout
+  title="Tadelakt"
+  headerBackground={'#365678 url("/theme/images/alternative-header-background.png")'}
+>
+  <Meta slot="head" title="Tadelakt" description={description} />
+
+  <a href="/" class={styles.more}>
+    <p>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        aria-hidden="true"
+        focusable="false"
+        style="vertical-align: sub; width: 20px; height: 20px; margin-top: 15px;"
+      >
+        <path
+          fill="currentColor"
+          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+        ></path>
+      </svg>
+      {' '}Zur&uuml;ck
+    </p>
+  </a>
+
+  <div class:list={[styles.container, styles.centerChilds]}>
+    <div class:list={[styles.twoThird, styles.left]}>
+      <h2>Tadelakt</h2>
+      <p class={styles.subHeading}>Kalkputztechnik aus Marokko</p>
+      <p>
+        Diese marokkanische Kalkputztechnik verbindet &Auml;sthetik und
+        Wirksamkeit. Aus leicht hydraulischem Kalkm&ouml;rtel hergestellt und mit
+        allen kalkechten Pigmenten f&auml;rbbar, lassen sich R&auml;ume mit
+        Tadelakt fugenlos und monolithisch gestalten.
+      </p>
+      <p>
+        Mehrere Gl&auml;tt- und Verdichtungsvorg&auml;nge sowie eine
+        abschlie&szlig;ende Verseifung des Putzes schaffen eine f&uuml;hlbar
+        glatte, seidig gl&auml;nzende Oberfl&auml;che.
+      </p>
+      <p>
+        Aufgrund seiner hydrophoben Eigenschaften und seiner besonderen Haptik
+        empfehlen wir Tadelekt f&uuml;r die Gestaltung des Sanit&auml;rberechs
+        oder zur Beschichtung von &Ouml;fen und Heizw&auml;nden.
+      </p>
+    </div>
+  </div>
+
+  <br />
+
+  <div
+    style="position: relative; width: 100%; padding-bottom: 50px; overflow: auto;"
+  >
+    {work.map((item, index) => (
+      <div class={styles.gridItem}>
+        <a href={item.imageUrl} data-lightbox-index={index}>
+          <img src={item.thumbnailUrl} class={styles.gridImage} alt={item.title} />
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <Lightbox id="lightbox" items={work} />
+</Layout>

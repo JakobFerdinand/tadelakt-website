@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+import Header from '../components/Header/Header.astro';
+
+import styles from './index.module.sass';
+
+const description =
+  'Herzlich willkommen auf unserer Website! Hier finden eine kurze Beschreibung von unseren Arbeiten im Bereich Tadelakt, Lehmputz, sowie Herstellung und Restaurierung alter W\u00e4nde und Oberfl\u00e4chen. Des weiteren finden Sie hier Bilder von einigen unserer Projekte, welche im Raum Braunau am Inn, Ried im Innkreis bis nach Salzburg durchgef\u00fchrt wurden.';
+---
+
+<Layout renderHeader={false}>
+  <Meta slot="head" title="Startseite" description={description} />
+
+  <Header slot="header">
+    <div class={styles.center}>
+      <img
+        src="/theme/images/header-logo.png"
+        alt="I-Ging 64 Symbol"
+        style={{ width: '100%' }}
+      />
+    </div>
+  </Header>
+
+  <div
+    class:list={[styles.container, styles.rowContainer, styles.centerChilds]}
+  ></div>
+
+  <div class={styles.container}>
+    <a href="/tadelakt">
+      <div class={styles.listing}>
+        <div class={styles.image}>
+          <img src="/images/tadelakt.jpg" />
+        </div>
+        <div class={styles.text}>
+          <h3>Tadelakt - Kalkputztechnik aus Marokko</h3>
+          Diese marokkanische Kalkputztechnik verbindet &Auml;sthetik und
+          Wirksamkeit. <p class={styles.more}>Mehr erfahren...</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="/lehmputz">
+      <div class={styles.listing}>
+        <div class={styles.image}>
+          <img src="/images/lehmputz.jpg" />
+        </div>
+        <div class={styles.text}>
+          <h3>Lehmputz - Feuchtigkeitsregulierend, individuell gesatltbar</h3>
+          Lehm ist der &auml;lteste mineralische Baustoff der Menschheit.
+          <p class={styles.more}>Mehr erfahren...</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="/herstellung-und-restaurierung">
+      <div class={styles.listing}>
+        <div class={styles.image}>
+          <img src="/images/herstellung-und-restaurierung.jpg" />
+        </div>
+        <div class={styles.text}>
+          <h3>
+            Herstellung und Restaurierung mineralischer Architekturoberfl&auml;chen
+          </h3>
+          Nat&uuml;rliche Materialien haben einen Alterswert, den wir sowohl
+          sch&uuml;tzen als auch &auml;sthetisch hervorheben m&ouml;chten.
+          <p class={styles.more}>Mehr erfahren...</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</Layout>

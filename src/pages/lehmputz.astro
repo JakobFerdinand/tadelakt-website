@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+import Lightbox from '../components/Lightbox/Lightbox.astro';
+
+import { getWork } from '../lib/gallery';
+
+import styles from './index.module.sass';
+
+const description =
+  'Lehm ist der \u00e4lteste mineralische Baustoff der Menschheit. Feuchtigkeitsregulierend und atmungsaktiv, mit geringem Energieaufwand herstellbar. Diese \u00f6kologischen und bauphysikalischen Vorz\u00fcge von Lehmputzen verbinden sich mit vielf\u00e4ltigen Bearbeitungsm\u00f6glichkeiten.';
+
+const work = getWork('lehmputz');
+---
+
+<Layout
+  title="Lehmputz"
+  headerBackground={'#8e6031 url("/theme/images/alternative-header-background.png")'}
+>
+  <Meta slot="head" title="Lehmputz" description={description} />
+
+  <a href="/" class={styles.more}>
+    <p>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        aria-hidden="true"
+        focusable="false"
+        style="vertical-align: sub; width: 20px; height: 20px; margin-top: 15px;"
+      >
+        <path
+          fill="currentColor"
+          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+        ></path>
+      </svg>
+      {' '}Zur&uuml;ck
+    </p>
+  </a>
+
+  <div class:list={[styles.container, styles.centerChilds]}>
+    <div class:list={[styles.twoThird, styles.left]}>
+      <h2>Lehmputz</h2>
+      <p class={styles.subHeading}>
+        Feuchtigkeitsregulierend, individuell gestaltbar
+      </p>
+      <p>
+        Lehm ist der &auml;lteste mineralische Baustoff der Menschheit.
+        Feuchtigkeitsregulierend und atmungsaktiv, mit geringem Energieaufwand
+        herstellbar. Diese &ouml;kologischen und bauphysikalischen Vorz&uuml;ge
+        von Lehmputzen verbinden sich mit vielf&auml;ltigen
+        Bearbeitungsm&ouml;glichkeiten.
+      </p>
+      <p>
+        Ein Material, das uns zu kreativer Gestaltung und origineller
+        Verwendung inspiriert. Neue und individuelle Lehmoberfl&auml;chen
+        gemeinsam mit ArchitektInnen und AuftraggeberInnen zu entwickeln ist uns
+        ein entsprechendes Anliegen.
+      </p>
+    </div>
+  </div>
+
+  <br />
+
+  <div
+    style="position: relative; width: 100%; padding-bottom: 50px; overflow: auto;"
+  >
+    {work.map((item, index) => (
+      <div class={styles.gridItem}>
+        <a href={item.imageUrl} data-lightbox-index={index}>
+          <img src={item.thumbnailUrl} class={styles.gridImage} alt={item.title} />
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <Lightbox id="lightbox" items={work} />
+</Layout>

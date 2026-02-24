@@ -1,5 +1,19 @@
-# Tadelakt Website
+# tadelakt.at (Astro)
 
-This repository contains a nextjs website template for [tadelakt.at](https://tadelakt.at).
+This is the primary site for tadelakt.at, implemented in Astro and built as static output to `dist/`.
 
-![Screenshot](img/Screenshot.jpg)
+## Commands
+
+From the repo root:
+
+```sh
+pnpm install
+pnpm dev
+```
+
+Build + preview:
+
+```sh
+pnpm build
+pnpm preview
+```

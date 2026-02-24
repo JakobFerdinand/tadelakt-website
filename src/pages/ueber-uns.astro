@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Meta from '../components/Meta/Meta.astro';
+
+import styles from './index.module.sass';
+
+const pageTitle = '\u00dcber uns';
+
+const description =
+  'Unser Team besteht aus Manfred Wegenschimmel und Reinhold Bartosch. Auch wenn jeder von uns schon viele Projekte alleine umgesetzt hat, so arbeiten wir doch immer wieder zusammen und erg\u00e4nzen uns gegenseitig.';
+---
+
+<Layout
+  title={pageTitle}
+  headerBackground={'#7b2614 url("/theme/images/alternative-header-background.png")'}
+>
+  <Meta slot="head" title={pageTitle} description={description} />
+
+  <div class={styles.twoGrid}>
+    <div class:list={[styles.container, styles.centerChilds]}>
+      <div class={styles.smallImage}>
+        <img src="/images/manfred.jpg" />
+      </div>
+      <div class:list={[styles.twoThird, styles.right]}>
+        <h2>Manfred Wegenschimmel</h2>
+        <p class={styles.subText}>Florianigasse 5 &middot; A-4943 Geinberg</p>
+        <p class={styles.subText}>+43 676 625 86 29</p>
+        <p class={styles.subText}>m.wegenschimmel@gmail.com</p>
+      </div>
+    </div>
+    <div class:list={[styles.container, styles.centerChilds]}>
+      <div class={styles.smallImage}>
+        <img src="/images/reinhold.jpg" />
+      </div>
+      <div class:list={[styles.twoThird, styles.left]}>
+        <h2>Reinhold Bartosch</h2>
+        <p class={styles.subText}>Auerbach 18 &middot; A-5224 Auerbach</p>
+        <p class={styles.subText}>+43 664 956 99 1 1</p>
+      </div>
+    </div>
+  </div>
+
+  <div class={styles.divider}></div>
+</Layout>

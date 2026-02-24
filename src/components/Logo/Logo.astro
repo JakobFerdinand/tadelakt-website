@@ -1,0 +1,23 @@
+---
+import styles from './Logo.module.sass';
+
+const { simple = false } = Astro.props;
+---
+
+<div class:list={[styles.logo, simple && styles.simple]}>
+  <a href="/">
+    {simple ? (
+      <img
+        style={{ width: '105%' }}
+        src="/theme/images/logo-simple.png"
+        alt="Vereinfachtes Logo von mao - mineralische architektur oberfl&auml;chen auf tadelakt.at"
+      />
+    ) : (
+      <img
+        style={{ width: '105%' }}
+        src="/theme/images/logo.png"
+        alt="Logo von mao - mineralische architektur oberfl&auml;chen auf tadelakt.at"
+      />
+    )}
+  </a>
+</div>

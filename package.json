@@ -1,20 +1,16 @@
 {
-  "name": "tadelakt-website",
-  "version": "1.0.0",
-  "private": true,
-  "author": "Leonhard Esterbauer <leonhard.esterbauer@gmail.com>",
-  "engines": {
-    "node": "16.x"
-  },
+  "name": "tadelakt.at",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "lerna run dev --parallel",
-    "build": "lerna run build",
-    "clean": "lerna clean",
-    "deploy": "lerna run deploy",
-    "empty-cache": "lerna run empty-cache"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "devDependencies": {
-    "lerna": "^9.0.3",
-    "rimraf": "^6.1.2"
+  "dependencies": {
+    "astro": "^5.17.1",
+    "include-media": "^2.0.0",
+    "sass": "^1.97.3"
   }
 }
