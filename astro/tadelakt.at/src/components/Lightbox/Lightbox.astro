@@ -101,187 +101,198 @@ const itemsJson = JSON.stringify(items ?? []);
 
 <script is:inline>
   (() => {
-    const id = {JSON.stringify(id)};
+    const dataEls = document.querySelectorAll('script[type="application/json"][id$="-items"]');
+    const suffix = '-items';
 
-    const outer = document.getElementById(id + '-outer');
-    const dataEl = document.getElementById(id + '-items');
-    const imgEl = document.getElementById(id + '-image');
-    const captionContentEl = document.getElementById(id + '-caption');
-    const closeBtn = document.getElementById(id + '-close');
-    const prevBtn = document.getElementById(id + '-prev');
-    const nextBtn = document.getElementById(id + '-next');
+    for (const dataEl of dataEls) {
+      if (dataEl.dataset.lightboxInitialized === 'true') continue;
 
-    if (!outer || !dataEl || !imgEl || !captionContentEl || !closeBtn || !prevBtn || !nextBtn) {
-      return;
-    }
+      const dataId = dataEl.getAttribute('id') || '';
+      if (!dataId.endsWith(suffix)) continue;
 
-    const backdrop = outer.querySelector('.ril__backdrop');
-    const captionEl = outer.querySelector('.ril__caption');
-    if (!backdrop || !captionEl) return;
+      dataEl.dataset.lightboxInitialized = 'true';
 
-    let items = [];
-    try {
-      items = JSON.parse(dataEl.textContent || '[]') || [];
-    } catch {
-      items = [];
-    }
+      const lightboxId = dataId.slice(0, -suffix.length);
 
-    let isOpen = false;
-    let index = 0;
-    let previousBodyOverflow = '';
+      const outer = document.getElementById(lightboxId + '-outer');
+      const imgEl = document.getElementById(lightboxId + '-image');
+      const captionContentEl = document.getElementById(lightboxId + '-caption');
+      const closeBtn = document.getElementById(lightboxId + '-close');
+      const prevBtn = document.getElementById(lightboxId + '-prev');
+      const nextBtn = document.getElementById(lightboxId + '-next');
 
-    const normalizeIndex = (i) => {
-      const len = items.length;
-      if (!len) return 0;
-      return ((i % len) + len) % len;
-    };
+      if (!outer || !imgEl || !captionContentEl || !closeBtn || !prevBtn || !nextBtn) {
+        continue;
+      }
 
-    const updateNavVisibility = () => {
-      const show = items.length > 1;
-      prevBtn.style.display = show ? '' : 'none';
-      nextBtn.style.display = show ? '' : 'none';
-    };
+      const backdrop = outer.querySelector('.ril__backdrop');
+      const captionEl = outer.querySelector('.ril__caption');
+      if (!backdrop || !captionEl) continue;
 
-    const setCaption = (item) => {
-      captionContentEl.textContent = '';
+      let items = [];
+      try {
+        items = JSON.parse(dataEl.textContent || '[]') || [];
+      } catch {
+        items = [];
+      }
 
-      const title = (item && item.title) || '';
-      const description = (item && item.description) || '';
+      let isOpen = false;
+      let index = 0;
+      let previousBodyOverflow = '';
 
-      if (!title && !description) {
+      const normalizeIndex = (i) => {
+        const len = items.length;
+        if (!len) return 0;
+        return ((i % len) + len) % len;
+      };
+
+      const updateNavVisibility = () => {
+        const show = items.length > 1;
+        prevBtn.style.display = show ? '' : 'none';
+        nextBtn.style.display = show ? '' : 'none';
+      };
+
+      const setCaption = (item) => {
+        captionContentEl.textContent = '';
+
+        const title = (item && item.title) || '';
+        const description = (item && item.description) || '';
+
+        if (!title && !description) {
+          captionEl.classList.add('ril__caption--hidden');
+          return;
+        }
+
+        captionEl.classList.remove('ril__caption--hidden');
+
+        if (title) {
+          const t = document.createElement('div');
+          t.className = 'ril__captionTitle';
+          t.textContent = title;
+          captionContentEl.appendChild(t);
+        }
+
+        if (description) {
+          const d = document.createElement('div');
+          d.className = 'ril__captionDescription';
+          d.textContent = description;
+          captionContentEl.appendChild(d);
+        }
+      };
+
+      const render = () => {
+        const item = items[index];
+        const src = (item && item.imageUrl) || '';
+        const alt = (item && item.title) || '';
+
+        imgEl.src = src;
+        imgEl.alt = alt;
+        setCaption(item);
+      };
+
+      const openAt = (i) => {
+        if (!items.length) return;
+
+        index = normalizeIndex(i);
+        isOpen = true;
+
+        previousBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        outer.classList.remove('ril__outer--hidden');
+        outer.classList.add('ril__outer--open');
+        outer.setAttribute('aria-hidden', 'false');
+
+        updateNavVisibility();
+        render();
+
+        try {
+          closeBtn.focus({ preventScroll: true });
+        } catch {
+          // ignore
+        }
+      };
+
+      const close = () => {
+        if (!isOpen) return;
+        isOpen = false;
+
+        outer.classList.add('ril__outer--hidden');
+        outer.classList.remove('ril__outer--open');
+        outer.setAttribute('aria-hidden', 'true');
+
+        document.body.style.overflow = previousBodyOverflow;
+
+        imgEl.src = '';
+        imgEl.alt = '';
+        captionContentEl.textContent = '';
         captionEl.classList.add('ril__caption--hidden');
-        return;
-      }
+      };
 
-      captionEl.classList.remove('ril__caption--hidden');
+      const next = () => {
+        if (!isOpen || !items.length) return;
+        index = normalizeIndex(index + 1);
+        render();
+      };
 
-      if (title) {
-        const t = document.createElement('div');
-        t.className = 'ril__captionTitle';
-        t.textContent = title;
-        captionContentEl.appendChild(t);
-      }
+      const prev = () => {
+        if (!isOpen || !items.length) return;
+        index = normalizeIndex(index - 1);
+        render();
+      };
 
-      if (description) {
-        const d = document.createElement('div');
-        d.className = 'ril__captionDescription';
-        d.textContent = description;
-        captionContentEl.appendChild(d);
-      }
-    };
+      const shouldIgnoreClick = (event) => {
+        if (!event) return false;
+        if (event.defaultPrevented) return true;
+        if (event.button !== 0) return true;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return true;
+        return false;
+      };
 
-    const render = () => {
-      const item = items[index];
-      const src = (item && item.imageUrl) || '';
-      const alt = (item && item.title) || '';
+      document.addEventListener(
+        'click',
+        (event) => {
+          const a = event.target && event.target.closest && event.target.closest('a[data-lightbox-index]');
+          if (!a) return;
+          if (shouldIgnoreClick(event)) return;
 
-      imgEl.src = src;
-      imgEl.alt = alt;
-      setCaption(item);
-    };
+          const raw = a.getAttribute('data-lightbox-index') || '0';
+          const i = Number.parseInt(raw, 10);
+          if (Number.isNaN(i)) return;
 
-    const openAt = (i) => {
-      if (!items.length) return;
+          event.preventDefault();
+          openAt(i);
+        },
+        { capture: true }
+      );
 
-      index = normalizeIndex(i);
-      isOpen = true;
+      closeBtn.addEventListener('click', close);
+      backdrop.addEventListener('click', close);
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
 
-      previousBodyOverflow = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', (event) => {
+        if (!isOpen) return;
 
-      outer.classList.remove('ril__outer--hidden');
-      outer.classList.add('ril__outer--open');
-      outer.setAttribute('aria-hidden', 'false');
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          close();
+          return;
+        }
+
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          prev();
+          return;
+        }
+
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          next();
+        }
+      });
 
       updateNavVisibility();
-      render();
-
-      try {
-        closeBtn.focus({ preventScroll: true });
-      } catch {
-        // ignore
-      }
-    };
-
-    const close = () => {
-      if (!isOpen) return;
-      isOpen = false;
-
-      outer.classList.add('ril__outer--hidden');
-      outer.classList.remove('ril__outer--open');
-      outer.setAttribute('aria-hidden', 'true');
-
-      document.body.style.overflow = previousBodyOverflow;
-
-      imgEl.src = '';
-      imgEl.alt = '';
-      captionContentEl.textContent = '';
-      captionEl.classList.add('ril__caption--hidden');
-    };
-
-    const next = () => {
-      if (!isOpen || !items.length) return;
-      index = normalizeIndex(index + 1);
-      render();
-    };
-
-    const prev = () => {
-      if (!isOpen || !items.length) return;
-      index = normalizeIndex(index - 1);
-      render();
-    };
-
-    const shouldIgnoreClick = (event) => {
-      if (!event) return false;
-      if (event.defaultPrevented) return true;
-      if (event.button !== 0) return true;
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return true;
-      return false;
-    };
-
-    document.addEventListener(
-      'click',
-      (event) => {
-        const a = event.target && event.target.closest && event.target.closest('a[data-lightbox-index]');
-        if (!a) return;
-        if (shouldIgnoreClick(event)) return;
-
-        const raw = a.getAttribute('data-lightbox-index') || '0';
-        const i = Number.parseInt(raw, 10);
-        if (Number.isNaN(i)) return;
-
-        event.preventDefault();
-        openAt(i);
-      },
-      { capture: true }
-    );
-
-    closeBtn.addEventListener('click', close);
-    backdrop.addEventListener('click', close);
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
-
-    document.addEventListener('keydown', (event) => {
-      if (!isOpen) return;
-
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        close();
-        return;
-      }
-
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault();
-        prev();
-        return;
-      }
-
-      if (event.key === 'ArrowRight') {
-        event.preventDefault();
-        next();
-      }
-    });
-
-    updateNavVisibility();
+    }
   })();
 </script>
