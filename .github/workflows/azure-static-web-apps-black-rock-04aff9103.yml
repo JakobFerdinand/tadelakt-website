@@ -32,12 +32,10 @@ jobs:
 
       - name: PNPM Install
         run: pnpm install
-        working-directory: ./src/website
 
       - name: Astro Check
         run: pnpm run check
-        working-directory: ./src/website
-
+        
       - name: Build Page
         run: pnpm run build
         
@@ -70,3 +68,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           action: "close"
+
