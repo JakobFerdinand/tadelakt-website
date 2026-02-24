@@ -1,8 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+// use core modules without the "node:" prefix to satisfy TypeScript checks
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // https://astro.build/config
 export default defineConfig({

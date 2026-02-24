@@ -97,7 +97,7 @@ const itemsJson = JSON.stringify(items ?? []);
   </div>
 </div>
 
-<script type="application/json" id={itemsId} set:html={itemsJson}></script>
+<script type="application/json" is:inline id={itemsId} set:html={itemsJson}></script>
 
 <script is:inline>
   (() => {

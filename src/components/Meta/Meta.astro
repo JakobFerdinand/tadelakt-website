@@ -11,6 +11,8 @@ const jsonLd = {
   name: 'mao | mineralische architektur oberfl\u00e4chen',
   url: siteUrl,
 };
+// reference it to satisfy the type checker (the JSON-LD is injected later)
+void jsonLd;
 ---
 
 {title ? <title>{title}</title> : null}

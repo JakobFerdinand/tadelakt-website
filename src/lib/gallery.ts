@@ -1,6 +1,7 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+// prefer plain module specifiers so TypeScript can resolve them more easily
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 export type GalleryCategory =
   | 'arbeit'
@@ -38,10 +39,10 @@ const buildWorkItems = (category: GalleryCategory): GalleryItem[] => {
 
   const files = fs
     .readdirSync(directory)
-    .filter((file) => imageExtensions.has(path.extname(file).toLowerCase()))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+    .filter((file: string) => imageExtensions.has(path.extname(file).toLowerCase()))
+    .sort((a: string, b: string) => a.localeCompare(b, undefined, { numeric: true }));
 
-  return files.map((file) => ({
+  return files.map((file: string) => ({
     title: titleFromFilename(file),
     description: '',
     imageUrl: `/images/${category}/${file}`,
