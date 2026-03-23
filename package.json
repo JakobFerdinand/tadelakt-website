@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.18.0",
+    "astro": "^6.0.8",
     "include-media": "^2.0.0",
-    "sass": "^1.97.3"
+    "sass": "^1.98.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@types/node": "^25.3.5"
+    "@astrojs/check": "^0.9.8",
+    "@types/node": "^25.5.0"
   }
 }
