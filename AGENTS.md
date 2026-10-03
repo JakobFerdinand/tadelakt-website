@@ -26,4 +26,5 @@ Use Node.js 24+ and npm 11.
 
 ## Maintenance
 
+- Commits: use Karma style, `<type>(<optional scope>): <short imperative summary>`, omitting parentheses when unscoped; choose `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore` or `revert` and keep the summary lowercase.
 - Agent: update this file in the same change set whenever a change invalidates a line or teaches a costly lesson; prefer deleting over adding, pointers over prose, one sentence per bullet, current state only, no history.
