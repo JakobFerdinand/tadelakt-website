@@ -75,14 +75,17 @@ connection errors; verify the server hostname and hosting configuration instead.
 The runner installs `lftp` from Ubuntu's package repository; no third-party
 deployment action receives your credentials.
 
-Hashed `_next/` assets upload before pages, and older remote files are retained.
+Hashed `_next/` assets upload before pages.
 All exported files are transferred, even when remote size/timestamps match, so
 an older file with different contents cannot silently survive a deployment.
-There is intentionally **no remote deletion**: this avoids deleting existing
-hosting files and keeps assets available to visitors with older pages open.
-It also means files from the original site and removed pages remain until you
-explicitly clean them up after reviewing the backup. Uploaded files with matching
-names, including `.htaccess`, are replaced.
+After both upload passes succeed, a final recursive mirror **deletes every file
+and directory in `FTP_REMOTE_DIR` that is absent from the tested export**,
+including hidden files, removed pages, original-site files and older `_next/`
+assets. Cleanup is skipped if either upload pass fails; cleanup failures fail
+the deployment. Uploaded files with matching names, including `.htaccess`, are
+replaced. The destination must contain only this site's exported files: keep
+backups and unrelated hosting files outside it. Visitors with older pages open
+may need to refresh after their assets are removed.
 
 FTP uploads are not atomic: visitors may see mixed versions during upload, and
 a failed upload can leave a partial deployment. Retry a failed deployment only

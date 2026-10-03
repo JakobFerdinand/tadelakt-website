@@ -88,7 +88,7 @@ jobs:
           else
             echo 'Skipping superseded main commit.'
           fi
-      - name: Upload tested export over FTPS
+      - name: Upload tested export and remove stale files over FTPS
         if: steps.latest.outputs.deploy == 'true'
         env:
           FTP_SERVER: ${{ vars.FTP_SERVER }}

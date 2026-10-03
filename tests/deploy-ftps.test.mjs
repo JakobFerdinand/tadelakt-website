@@ -20,12 +20,32 @@ test('deployment requires encrypted FTP and verified certificates', () => {
   assert.match(commands, /cd "public_html"/);
 });
 
-test('uploads assets first, includes Apache configuration and never deletes files', () => {
+test('uploads assets first and includes Apache configuration', () => {
   const commands = createDeploymentCommands(config);
   assert.ok(commands.indexOf('out/_next/') < commands.indexOf(' out/ ./'));
   assert.match(commands, /--exclude-glob _next\/ out\/ \.\//);
   assert.equal(commands.match(/--transfer-all/g)?.length, 2);
-  assert.doesNotMatch(commands, /--delete|--exclude.*htaccess|mkdir/);
+  assert.doesNotMatch(commands, /--exclude.*htaccess|mkdir/);
+});
+
+test('prunes all stale files only after both uploads succeed', () => {
+  const commands = createDeploymentCommands(config);
+  const mirrors = commands
+    .split('\n')
+    .filter((line) => line.startsWith('mirror '));
+  assert.equal(mirrors.length, 3);
+  assert.doesNotMatch(mirrors[0], /--delete/);
+  assert.doesNotMatch(mirrors[1], /--delete/);
+  assert.equal(
+    mirrors[2],
+    'mirror --reverse --delete --only-missing --recursion=always --no-perms --verbose out/ ./',
+  );
+  assert.match(commands, /set cmd:fail-exit yes/);
+  assert.match(commands, /set ftp:list-options -a/);
+  assert.ok(
+    commands.indexOf('cd "public_html"') < commands.indexOf(mirrors[0]),
+  );
+  assert.doesNotMatch(commands, /--delete-first|--delete-excluded/);
 });
 
 test('lftp interprets special characters in passwords literally', {

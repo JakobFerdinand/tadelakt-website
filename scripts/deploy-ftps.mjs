@@ -44,13 +44,16 @@ export function createDeploymentCommands(env) {
     'set ftp:ssl-auth TLS',
     'set ftp:ssl-protect-data yes',
     'set ssl:verify-certificate yes',
+    'set ftp:list-options -a',
     `open ${quote(`ftp://${FTP_SERVER}:21`)}`,
     `user ${quote(FTP_USERNAME)} ${quote(FTP_PASSWORD)}`,
     // Require an existing destination; never create a guessed document root.
     `cd ${quote(FTP_REMOTE_DIR)}`,
-    // Publish hashed assets before HTML referencing them; retain older assets.
+    // Publish hashed assets before HTML referencing them, without deleting yet.
     'mirror --reverse --transfer-all --parallel=4 --no-perms out/_next/ _next/',
     'mirror --reverse --transfer-all --parallel=4 --no-perms --exclude-glob _next/ out/ ./',
+    // Only prune after both uploads succeed; include old assets and hidden files.
+    'mirror --reverse --delete --only-missing --recursion=always --no-perms --verbose out/ ./',
     'bye',
     '',
   ].join('\n');
