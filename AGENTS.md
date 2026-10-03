@@ -22,6 +22,7 @@ Use Node.js 24+ and npm 11.
 - Styling and fonts: start at `pages/_app.tsx`, `styles/globals.sass`, `styles/variables.sass`, `styles/media.sass`, `pages/index.module.sass`, `styles/fonts.scss` and `public/theme/fonts/`.
 - Galleries and images: see the four gallery pages, `lib/gallery.ts`, `components/GalleryLightbox/index.tsx` and `scripts/generate-thumbnails.mjs`; generated `public/thumbnails/` files are ignored by Git.
 - Hosting and errors: treat `apache/.htaccess`, `pages/404.tsx` and `scripts/finalize-export.mjs` as one contract, and verify routing against the Apache static export using the instructions in `docs/dependency-upgrade.md`.
+- Public assets: Next.js exports their paths unchanged; `tests/public-assets.test.mjs` guards against filenames rejected by GitHub artifact uploads, including macOS Finder's `Icon\r` metadata.
 - CI and deployment: consult `docs/deployment.md` when changing `.github/workflows/ci.yml`, FTPS uploads or production credentials.
 
 ## Maintenance
