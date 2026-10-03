@@ -1,24 +1,27 @@
 # Agent memory
 
-German-language portfolio for mao’s mineral plaster and restoration work at tadelakt.at, built with Next.js 10 and exported for Apache.
+German-language portfolio for mao’s mineral plaster and restoration work at tadelakt.at, built with Next.js 16 Pages Router and TypeScript 7, statically exported for Apache.
 
 ## Commands
 
-Use Node.js 16 and Yarn 1.
+Use Node.js 24+ and npm 11.
 
-- Install: `yarn install --frozen-lockfile`.
-- Develop: `yarn dev`.
-- Build and export: `yarn build` followed by `yarn export`.
-- Lint: `yarn lint` (rewrites files with `--fix`).
+- Install: `npm ci`.
+- Develop: `npm run dev`.
+- Build and export: `npm run build` generates thumbnails, exports to `out/` and copies Apache configuration.
+- Validate: `npm run check` runs Biome, TypeScript, Node tests, build and Chromium e2e; install the browser with `npx playwright install chromium` first.
+- Format: `npm run format` rewrites files; `npm run biome` and `npm run lint` are read-only.
 
 ## Map
 
 - Live-site fidelity: consult `docs/live-state-restoration.md` before reconciling deployed HTML, JavaScript, fonts or privacy text.
-- Content and SEO: start at `pages/index.js`, `pages/kontakt.js`, `pages/impressum.js`, `pages/datenschutz.js` and `components/Meta/index.js`.
-- Shell and navigation: start at `components/Layout/index.js`, `components/Header/index.js`, `components/Footer/index.js`, `components/MainNavigation/index.js`, `components/FooterNavigation/index.js` and `components/Link/index.js`.
-- Styling and fonts: start at `pages/_app.js`, `styles/globals.sass`, `styles/variables.sass`, `pages/index.module.sass`, `styles/fonts.scss` and `public/theme/fonts/`.
-- Galleries and images: see `pages/arbeit.js`, `pages/tadelakt.js`, `pages/lehmputz.js`, `pages/herstellung-und-restaurierung.js`, `public/images/` and `next.config.js`; broad dynamic imports can emit loader warnings for non-image public files even when build and export succeed.
-- Hosting and errors: treat `apache/.htaccess`, `pages/404.js` and the export script in `package.json` as one contract, and verify routing against the Apache static export.
+- Next.js APIs: read the relevant version-matched guide in `node_modules/next/dist/docs/` before editing framework code; alias pages identify their shared source in frontmatter.
+- Dependency migrations: consult `docs/dependency-upgrade.md` for major-version notes and the TypeScript 7 compatibility decision.
+- Content and SEO: start at `pages/index.tsx`, `pages/kontakt.tsx`, `pages/impressum.tsx`, `pages/datenschutz.tsx` and `components/Meta/index.tsx`.
+- Shell and navigation: start at `components/Layout/index.tsx`, `components/Header/index.tsx`, `components/Footer/index.tsx`, `components/MainNavigation/index.tsx`, `components/FooterNavigation/index.tsx` and `components/Link/index.tsx`.
+- Styling and fonts: start at `pages/_app.tsx`, `styles/globals.sass`, `styles/variables.sass`, `styles/media.sass`, `pages/index.module.sass`, `styles/fonts.scss` and `public/theme/fonts/`.
+- Galleries and images: see the four gallery pages, `lib/gallery.ts`, `components/GalleryLightbox/index.tsx` and `scripts/generate-thumbnails.mjs`; generated `public/thumbnails/` files are ignored by Git.
+- Hosting and errors: treat `apache/.htaccess`, `pages/404.tsx` and `scripts/finalize-export.mjs` as one contract, and verify routing against the Apache static export using the instructions in `docs/dependency-upgrade.md`.
 
 ## Maintenance
 

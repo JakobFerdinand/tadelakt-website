@@ -7,6 +7,11 @@
 
 # testing
 /coverage
+/playwright-report/
+/test-results/
+/public/thumbnails/
+*.tsbuildinfo
+/next-env.d.ts
 
 # next.js
 /.next/

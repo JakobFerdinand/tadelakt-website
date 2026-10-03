@@ -1,5 +1,5 @@
-@import styles/variables.sass
-@import ~include-media/dist/_include-media.scss
+@use 'styles/variables' as *
+@use 'styles/media' as *
 
 .mainNavigation
   font-family: $specialFont
@@ -37,6 +37,8 @@
     opacity: 1
 
 .menuToggle
+  background: transparent
+  cursor: pointer
   padding: 10px 15px
   border: 1px solid $defaultFontColor
   float: right

@@ -1,8 +1,7 @@
-@import reset.scss
-@import ~include-media/dist/_include-media.scss
-@import variables
-
-@import ~react-image-lightbox/style.css
+@use 'sass:math'
+@use 'reset'
+@use 'media' as *
+@use 'variables' as *
 
 *
   box-sizing: border-box
@@ -30,7 +29,7 @@ h2
 
 h3
   color: $h3Color
-  font-size: $h3FontSize / 1.5
+  font-size: math.div($h3FontSize, 1.5)
   line-height: $h3FontSize * 1.1
   margin-top: 30px
   @include media(">=bigPhone")

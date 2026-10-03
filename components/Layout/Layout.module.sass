@@ -1,5 +1,5 @@
-@import ~include-media/dist/_include-media.scss
-@import styles/variables
+@use 'styles/media' as *
+@use 'styles/variables' as *
 
 .site
   display: flex
@@ -24,7 +24,7 @@
 
 // Colors
 $bg-color: #ffffff
-$dot-color: hsl(256,33,70)
+$dot-color: hsl(256,33%,70%)
 
 // Dimensions
 $dot-size: 1px
