@@ -1,0 +1,27 @@
+@import styles/variables.sass
+@import ~include-media/dist/_include-media.scss
+
+.logo
+  margin-top: 10px
+  width: 120px
+  float: left
+  @include media(">iphone5")
+    width: 175px
+    margin-top: 5px
+  @include media(">=iphone6")
+    width: 200px
+  @include media(">=iphone6Plus")
+    margin-top: 5px
+    width: 220px
+  @include media(">bigPhone")
+    width: 250px
+  @include media(">tablet")
+    margin-top: -5px
+    width: 275px
+  &.simple
+    @include media(">iphone5")
+      margin-top: 6px
+    @include media(">=iphone6Plus")
+      margin-top: 4px
+    @include media(">tablet")
+      margin-top: -10px
