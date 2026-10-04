@@ -1,9 +1,12 @@
 # GitHub Actions and Hetzner deployment
 
-The workflow in `.github/workflows/ci.yml` checks every branch push and pull
-request using `npm run check`: Biome formatting/lint, TypeScript, Node tests,
+The workflow in `.github/workflows/ci.yml` checks branch pushes and pull
+requests using `npm run check`: Biome formatting/lint, TypeScript, Node tests,
 the static production build, and Chromium browser tests. Failed browser tests
 retain diagnostics as a GitHub artifact.
+The workflow is skipped, deployment included, when a change touches only
+Markdown files, `img/` or `.github/dependabot.yml`; any other changed file runs
+it in full, including Dependabot's dependency and action updates.
 CI installs `lftp` to regression-test its password parser; that test is skipped
 locally when `lftp` is not installed.
 
@@ -63,7 +66,9 @@ password, SSH key, or personal GitHub token is needed. GitHub supplies the
 read-only `GITHUB_TOKEN` automatically.
 
 Ensure Actions are enabled. Protect `main` with the required status check
-**Lint, types, tests and build** so failed PRs cannot be merged. Push this
+**Lint, types, tests and build** so failed PRs cannot be merged. A PR that
+changes only skipped paths never reports that check and stays blocked until an
+administrator bypasses the rule. Push this
 configuration to a branch and open a PR to verify CI before merging to `main`.
 Missing FTP settings cause deployment to fail without uploading anything.
 

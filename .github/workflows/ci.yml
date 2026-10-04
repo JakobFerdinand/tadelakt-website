@@ -2,7 +2,16 @@ name: CI and deploy
 
 on:
   push:
+    # Nothing in these paths is linted, tested, built or exported.
+    paths-ignore:
+      - '**.md'
+      - img/**
+      - .github/dependabot.yml
   pull_request:
+    paths-ignore:
+      - '**.md'
+      - img/**
+      - .github/dependabot.yml
 
 permissions:
   contents: read
