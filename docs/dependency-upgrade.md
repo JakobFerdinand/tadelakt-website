@@ -62,12 +62,12 @@ Next.js's static export and copies `apache/.htaccess` into it. The original
 photos and ten font files remain in `public/`. Gallery ordering and all 94
 titles are preserved: Arbeit 56, Tadelakt 14, Lehmputz 10, restoration 14.
 
-`npm run check` runs Biome, strict TypeScript, three Node tests, production build
+`npm run check` runs Biome, strict TypeScript, the Vitest suite, production build
 and 19 Chromium e2e cases. The e2e suite covers all nine content routes, local
 assets, metadata/JSON-LD, all galleries, zoom/backdrop/keyboard/focus behavior, mobile
 client-side navigation, missing-route status and the four Apache error query
-codes. `npm run e2e` uses a local static preview on port 4173; `E2E_BASE_URL`
-selects an already-running server instead.
+codes. `npm run test:e2e` starts `next dev` on a spare port; `E2E_BASE_URL`
+selects an already-running server instead, such as `npm start` for the export.
 
 ### Real Apache verification
 
@@ -78,7 +78,7 @@ docker run --detach --rm --name tadelakt-check \
   --publish 127.0.0.1:4174:80 \
   --volume "$PWD/out:/usr/local/apache2/htdocs:ro" \
   httpd:2.4 sh -c "sed -i 's/#LoadModule rewrite_module/LoadModule rewrite_module/; s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf && exec httpd-foreground"
-E2E_BASE_URL=http://www.localhost:4174 npm run e2e
+E2E_BASE_URL=http://www.localhost:4174 npm run test:e2e
 curl -I -H 'Host: www.localhost' http://127.0.0.1:4174/arbeit
 curl -I -H 'Host: www.localhost' http://127.0.0.1:4174/missing-page
 curl -I -H 'Host: tadelakt.at' http://127.0.0.1:4174/kontakt

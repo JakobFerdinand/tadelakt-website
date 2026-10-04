@@ -5,6 +5,7 @@
     "includes": [
       "**",
       "!package-lock.json",
+      "!.backup",
       "!next-env.d.ts",
       "!public",
       "!styles",

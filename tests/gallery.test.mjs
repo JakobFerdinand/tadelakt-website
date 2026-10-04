@@ -9,8 +9,8 @@ import {
 } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { test } from 'node:test';
 import sharp from 'sharp';
+import { test } from 'vitest';
 import { getGalleryImages } from '../lib/gallery.ts';
 import {
   galleries,

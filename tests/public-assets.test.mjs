@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readdir } from 'node:fs/promises';
-import { test } from 'node:test';
+import { test } from 'vitest';
 
 test('public asset paths are compatible with GitHub artifact uploads', async () => {
   // Next.js copies public assets verbatim into the static export.

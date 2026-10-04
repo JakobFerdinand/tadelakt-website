@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import test from 'node:test';
+import { test } from 'vitest';
 import { createDeploymentCommands } from '../scripts/deploy-ftps.mjs';
 
 const config = {
@@ -48,27 +48,28 @@ test('prunes all stale files only after both uploads succeed', () => {
   assert.doesNotMatch(commands, /--delete-first|--delete-excluded/);
 });
 
-test('lftp interprets special characters in passwords literally', {
-  skip: spawnSync('lftp', ['--version']).error?.code === 'ENOENT',
-}, () => {
-  for (const password of ['p"a\\ss; $word`', "single'quote", '  spaces  ']) {
-    const commands = createDeploymentCommands({
-      ...config,
-      FTP_PASSWORD: password,
-    });
-    const credentialLine = commands
-      .split('\n')
-      .find((line) => line.startsWith('user '));
-    // Use the real command parser without opening a network connection.
-    const result = spawnSync('lftp', ['--norc'], {
-      input: `${credentialLine.replace(/^user "deploy-user" /, 'echo ')}\nbye\n`,
-      encoding: 'utf8',
-      timeout: 5000,
-    });
-    assert.equal(result.status, 0, result.stderr);
-    assert.equal(result.stdout, `${password}\n`);
-  }
-});
+test.skipIf(spawnSync('lftp', ['--version']).error?.code === 'ENOENT')(
+  'lftp interprets special characters in passwords literally',
+  () => {
+    for (const password of ['p"a\\ss; $word`', "single'quote", '  spaces  ']) {
+      const commands = createDeploymentCommands({
+        ...config,
+        FTP_PASSWORD: password,
+      });
+      const credentialLine = commands
+        .split('\n')
+        .find((line) => line.startsWith('user '));
+      // Use the real command parser without opening a network connection.
+      const result = spawnSync('lftp', ['--norc'], {
+        input: `${credentialLine.replace(/^user "deploy-user" /, 'echo ')}\nbye\n`,
+        encoding: 'utf8',
+        timeout: 5000,
+      });
+      assert.equal(result.status, 0, result.stderr);
+      assert.equal(result.stdout, `${password}\n`);
+    }
+  },
+);
 
 test('quotes credentials without treating them as commands', () => {
   const commands = createDeploymentCommands({

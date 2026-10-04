@@ -9,7 +9,9 @@ Use Node.js 24+ and npm 11.
 - Install: `npm ci`.
 - Develop: `npm run dev`.
 - Build and export: `npm run build` generates thumbnails, exports to `out/` and copies Apache configuration.
-- Validate: `npm run check` runs Biome, TypeScript, Node tests, build and Chromium e2e; install the browser with `npx playwright install chromium` first.
+- Validate: `npm run check` runs Biome, TypeScript, Vitest, build and Chromium e2e; install the browser with `npx playwright install chromium` first.
+- Test: `npm test` runs Vitest over `tests/*.test.{mjs,ts,tsx}` in Node, with component tests opting into jsdom by docblock; `npm run test:e2e` runs `tests/e2e/` against its own `next dev` on a spare port, or against `E2E_BASE_URL` when set.
+- Dev cache: delete `.next/dev` when `next dev` hangs at `Compiling`.
 - Format: `npm run format` rewrites files; `npm run biome` and `npm run lint` are read-only.
 
 ## Map
@@ -29,3 +31,13 @@ Use Node.js 24+ and npm 11.
 
 - Commits: use Karma style, `<type>(<optional scope>): <short imperative summary>`, omitting parentheses when unscoped; choose `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore` or `revert` and keep the summary lowercase.
 - Agent: update this file in the same change set whenever a change invalidates a line or teaches a costly lesson; prefer deleting over adding, pointers over prose, one sentence per bullet, current state only, no history.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

@@ -3,7 +3,7 @@ import { once } from 'node:events';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { test } from 'node:test';
+import { test } from 'vitest';
 import { createExportServer } from '../scripts/serve-export.mjs';
 
 test('static preview serves clean URLs, explicit HTML, assets and genuine 404 responses', async () => {

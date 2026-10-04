@@ -1,7 +1,7 @@
 # GitHub Actions and Hetzner deployment
 
 The workflow in `.github/workflows/ci.yml` checks branch pushes and pull
-requests using `npm run check`: Biome formatting/lint, TypeScript, Node tests,
+requests using `npm run check`: Biome formatting/lint, TypeScript, Vitest tests,
 the static production build, and Chromium browser tests. Failed browser tests
 retain diagnostics as a GitHub artifact.
 The workflow is skipped, deployment included, when a change touches only
