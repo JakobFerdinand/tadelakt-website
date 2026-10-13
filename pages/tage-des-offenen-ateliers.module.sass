@@ -1,0 +1,132 @@
+@font-face
+  font-family: 'Saans Atelier'
+  src: url('/tdoa/fonts/Saans-Regular.woff2') format('woff2')
+  font-style: normal
+  font-weight: 400
+  font-display: swap
+
+@font-face
+  font-family: 'Saans Mono Atelier'
+  src: url('/tdoa/fonts/SaansMono-Regular.woff2') format('woff2')
+  font-style: normal
+  font-weight: 400
+  font-display: swap
+
+.page
+  background: #180d45
+  color: #fff
+  font-family: 'Saans Atelier', Arial, sans-serif
+  font-weight: 400
+  font-synthesis: none
+  letter-spacing: 0
+  line-height: 1.4
+
+  p, address
+    margin: 0
+
+  a
+    color: inherit
+
+    &:hover
+      text-decoration: underline
+      text-underline-offset: .2em
+
+    &:focus-visible
+      outline: 2px solid currentColor
+      outline-offset: 5px
+
+.section
+  position: relative
+  isolation: isolate
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  min-height: 100svh
+  padding: 12.5svh 5.8vw 8.8svh
+
+.atelier, .schedule
+  font-family: 'Saans Mono Atelier', 'Courier New', monospace
+  font-size: clamp(.875rem, min(4.9vw, 2.6svh), 3rem)
+  line-height: 1.2
+
+.event
+  margin-top: 5svh
+
+.title
+  margin: 0
+  font-size: clamp(3.125rem, min(17vw, 9svh), 11rem)
+  font-weight: 400
+  line-height: 1.17
+  letter-spacing: -.025em
+
+  span
+    display: block
+
+.schedule
+  margin-top: 4.3svh
+
+  p + p
+    margin-top: 2.6svh
+
+.details
+  margin-top: auto
+  padding-top: 5svh
+  font-size: clamp(.75rem, min(2.6vw, 1.6svh), 1.625rem)
+
+.contact
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+  a
+    max-width: 100%
+    overflow-wrap: anywhere
+
+.venue
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  align-items: baseline
+  gap: .75rem 1.5rem
+  margin-top: 3.5svh
+
+  address
+    font-style: normal
+
+  p
+    margin-left: auto
+
+.background
+  position: absolute
+  inset: 0
+  z-index: -2
+  width: 100%
+  height: 100%
+  object-fit: cover
+  object-position: center
+
+.photograph::before
+  content: ''
+  position: absolute
+  inset: 0
+  z-index: -1
+  background: linear-gradient(to bottom, rgb(0 0 0 / .3), transparent 30%, transparent 70%, rgb(0 0 0 / .45))
+
+@media (min-aspect-ratio: 1/1)
+  .background
+    object-position: center 58%
+
+@media (max-width: 360px)
+  .atelier
+    max-width: 18em
+
+  .venue
+    gap: .5rem
+
+@media (max-height: 500px) and (min-aspect-ratio: 1/1)
+  .section
+    padding-top: 8svh
+    padding-bottom: 8svh
+
+  .title
+    font-size: clamp(2.5rem, 9svh, 4rem)

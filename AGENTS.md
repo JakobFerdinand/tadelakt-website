@@ -20,6 +20,7 @@ Use Node.js 24+ and npm 11.
 - Next.js APIs: read the relevant version-matched guide in `node_modules/next/dist/docs/` before editing framework code; alias pages identify their shared source in frontmatter.
 - Dependency migrations: consult `docs/dependency-upgrade.md` for major-version notes and the TypeScript 7 compatibility decision.
 - Content and SEO: start at `pages/index.tsx`, `pages/kontakt.tsx`, `pages/impressum.tsx`, `pages/datenschutz.tsx` and `components/Meta/index.tsx`.
+- Open-ateliers event: `pages/tage-des-offenen-ateliers.tsx` and its Sass module form a standalone poster page with assets and page-scoped Saans fonts in `public/tdoa/`; `scripts/finalize-export.mjs` also exports its trailing-slash URL.
 - Shell and navigation: start at `components/Layout/index.tsx`, `components/Header/index.tsx`, `components/Footer/index.tsx`, `components/MainNavigation/index.tsx`, `components/FooterNavigation/index.tsx` and `components/Link/index.tsx`.
 - Styling and fonts: start at `pages/_app.tsx`, `styles/globals.sass`, `styles/variables.sass`, `styles/media.sass`, `pages/index.module.sass`, `styles/fonts.scss` and `public/theme/fonts/`.
 - Galleries and images: see the four gallery pages, `lib/gallery.ts`, `components/GalleryLightbox/index.tsx` and `scripts/generate-thumbnails.mjs`; generated `public/thumbnails/` files are ignored by Git.
@@ -34,7 +35,7 @@ Use Node.js 24+ and npm 11.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
-# This is NOT the Next.js you know
+## This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
