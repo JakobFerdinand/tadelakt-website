@@ -17,6 +17,13 @@ test('event has three standalone sections in poster order', () => {
     }),
   ).toBeDefined();
   expect(sections[0].querySelectorAll('time')).toHaveLength(2);
+  expect(sections[0].textContent).toContain('Samstag 17.');
+  expect(sections[0].textContent).toContain('& Sonntag 18.10.2026');
+  expect(
+    [...sections[0].querySelectorAll('time')].map((time) =>
+      time.getAttribute('datetime'),
+    ),
+  ).toEqual(['2026-10-17', '2026-10-18']);
   expect(sections[0].textContent).toContain('10:00 - 12:00 Uhr');
   expect(sections[0].textContent).toContain('14:00 - 18:00 Uhr');
   expect(sections[1].querySelector('img')?.getAttribute('src')).toContain(

@@ -3,7 +3,7 @@ import styles from './tage-des-offenen-ateliers.module.sass';
 
 const title = 'Tage des offenen Ateliers | Atelier Manfred Wegenschimmel';
 const description =
-  'Atelier Manfred Wegenschimmel: Tage des offenen Ateliers am 16. und 17. Oktober 2026, 10:00–12:00 und 14:00–18:00 Uhr. Kirchenplatz 5, 4943 Geinberg. Eintritt frei.';
+  'Atelier Manfred Wegenschimmel: Tage des offenen Ateliers am 17. und 18. Oktober 2026, 10:00–12:00 und 14:00–18:00 Uhr. Kirchenplatz 5, 4943 Geinberg. Eintritt frei.';
 const url = 'https://www.tadelakt.at/tage-des-offenen-ateliers/';
 
 function AtelierName() {
@@ -69,9 +69,9 @@ export default function TageDesOffenenAteliers() {
             </h1>
             <div className={styles.schedule}>
               <p>
-                Freitag <time dateTime="2026-10-16">16.</time>
+                Samstag <time dateTime="2026-10-17">17.</time>
                 <br />
-                &amp; Samstag <time dateTime="2026-10-17">17.10.2026</time>
+                &amp; Sonntag <time dateTime="2026-10-18">18.10.2026</time>
               </p>
               <p>
                 10:00 - 12:00 Uhr
