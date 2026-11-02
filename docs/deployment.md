@@ -48,16 +48,16 @@ GitHub plan and repository visibility.
 
 Under that environment, add these **secrets**:
 
-| Secret | Value |
-| --- | --- |
+| Secret         | Value                       |
+| -------------- | --------------------------- |
 | `FTP_USERNAME` | Your Hetzner FTP login name |
-| `FTP_PASSWORD` | Its FTP password |
+| `FTP_PASSWORD` | Its FTP password            |
 
 Add these environment **variables** (not secrets):
 
-| Variable | Value |
-| --- | --- |
-| `FTP_SERVER` | `www414.your-server.de` |
+| Variable         | Value                                       |
+| ---------------- | ------------------------------------------- |
+| `FTP_SERVER`     | `www414.your-server.de`                     |
 | `FTP_REMOTE_DIR` | The confirmed website directory from step 1 |
 
 Repository-level Actions secrets/variables with the same names also work, but
