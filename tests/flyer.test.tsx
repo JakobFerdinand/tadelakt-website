@@ -1,12 +1,12 @@
 // @vitest-environment jsdom
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, expect, test } from 'vitest';
-import Infosheet from '../pages/infosheet';
+import Flyer from '../pages/flyer';
 
 afterEach(cleanup);
 
 test('flyer maps both printed sheets in reading order', () => {
-  const { container } = render(<Infosheet />);
+  const { container } = render(<Flyer />);
   expect(container.querySelector('header, nav, footer')).toBeNull();
   const sheets = screen.getAllByRole('region');
   expect(sheets).toHaveLength(2);
@@ -61,23 +61,23 @@ test('flyer maps both printed sheets in reading order', () => {
 });
 
 test('flyer embeds all fourteen photographs', () => {
-  render(<Infosheet />);
+  render(<Flyer />);
   const images = screen.getAllByRole('img');
   expect(images).toHaveLength(14);
   for (const image of images) {
     const src = image.getAttribute('src');
-    expect(src).toMatch(/^\/infosheet\/.+\.webp$/);
+    expect(src).toMatch(/^\/flyer\/.+\.webp$/);
     expect(image.getAttribute('alt')).toBeTruthy();
     expect(image.getAttribute('width')).toBe(image.getAttribute('width'));
   }
   const sources = images.map((image) => image.getAttribute('src'));
-  expect(sources).toContain('/infosheet/atelier-portrait.webp');
-  expect(sources).toContain('/infosheet/grosse-goettin-1.webp');
-  expect(sources).toContain('/infosheet/grosse-goettin-2.webp');
-  expect(sources).toContain('/infosheet/i-ging-1.webp');
-  expect(sources).toContain('/infosheet/i-ging-2.webp');
-  expect(sources).toContain('/infosheet/labyrinth-1.webp');
-  expect(sources).toContain('/infosheet/labyrinth-2.webp');
+  expect(sources).toContain('/flyer/atelier-portrait.webp');
+  expect(sources).toContain('/flyer/grosse-goettin-1.webp');
+  expect(sources).toContain('/flyer/grosse-goettin-2.webp');
+  expect(sources).toContain('/flyer/i-ging-1.webp');
+  expect(sources).toContain('/flyer/i-ging-2.webp');
+  expect(sources).toContain('/flyer/labyrinth-1.webp');
+  expect(sources).toContain('/flyer/labyrinth-2.webp');
   expect(sources.filter((src) => src?.includes('empoert-euch-'))).toHaveLength(
     4,
   );

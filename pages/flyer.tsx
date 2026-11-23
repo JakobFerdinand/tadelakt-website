@@ -7,12 +7,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Head from 'next/head';
-import styles from './infosheet.module.sass';
+import styles from './flyer.module.sass';
 
-const title = 'Infosheet | Atelier Manfred Wegenschimmel';
+const title = 'Flyer | Atelier Manfred Wegenschimmel';
 const description =
-  'Infosheet des Ateliers Manfred Wegenschimmel: Zwischen Wandlung und tätiger Hoffnung, Materialethik, die Große Göttin, das I Ging, das Labyrinth und die QR-Code-Arbeiten Empört Euch – Indignez-vous.';
-const url = 'https://www.tadelakt.at/infosheet/';
+  'Flyer des Ateliers Manfred Wegenschimmel: Zwischen Wandlung und tätiger Hoffnung, Materialethik, die Große Göttin, das I Ging, das Labyrinth und die QR-Code-Arbeiten Empört Euch – Indignez-vous.';
+const url = 'https://www.tadelakt.at/flyer/';
 
 function SectionNumber({ number }: { number: number }) {
   return (
@@ -22,7 +22,7 @@ function SectionNumber({ number }: { number: number }) {
   );
 }
 
-export default function Infosheet() {
+export default function Flyer() {
   return (
     <>
       <Head>
@@ -39,7 +39,7 @@ export default function Infosheet() {
         <meta property="og:url" content={url} />
         <meta
           property="og:image"
-          content="https://www.tadelakt.at/infosheet/grosse-goettin-2.webp"
+          content="https://www.tadelakt.at/flyer/grosse-goettin-2.webp"
         />
         <meta
           property="og:image:alt"
@@ -47,14 +47,14 @@ export default function Infosheet() {
         />
         <link
           rel="preload"
-          href="/infosheet/fonts/Saans-Regular.woff2"
+          href="/flyer/fonts/Saans-Regular.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/infosheet/fonts/SaansMono-Regular.woff2"
+          href="/flyer/fonts/SaansMono-Regular.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -109,14 +109,14 @@ export default function Infosheet() {
             </div>
             <figure className={styles.portrait}>
               <img
-                src="/infosheet/atelier-portrait.webp"
+                src="/flyer/atelier-portrait.webp"
                 width={523}
                 height={784}
                 alt="Manfred Wegenschimmel arbeitet an Reliefplatten mit I-Ging-Hexagrammen"
                 decoding="async"
               />
             </figure>
-            <div>
+            <div className={styles.about}>
               <h2 className={styles.headline} id="ueber-atelier">
                 Über Atelier <span>Manfred Wegenschimmel</span>
               </h2>
@@ -173,7 +173,7 @@ export default function Infosheet() {
           <div className={styles.material}>
             <figure className={styles.textures}>
               <img
-                src="/infosheet/materialethik-1.webp"
+                src="/flyer/materialethik-1.webp"
                 width={506}
                 height={513}
                 alt="Marmorierte Kalkoberfläche in Braun- und Rottönen"
@@ -181,7 +181,7 @@ export default function Infosheet() {
                 decoding="async"
               />
               <img
-                src="/infosheet/materialethik-2.webp"
+                src="/flyer/materialethik-2.webp"
                 width={507}
                 height={513}
                 alt="Rote Kalkoberfläche mit vertikalen Verläufen"
@@ -189,7 +189,7 @@ export default function Infosheet() {
                 decoding="async"
               />
               <img
-                src="/infosheet/materialethik-3.webp"
+                src="/flyer/materialethik-3.webp"
                 width={506}
                 height={513}
                 alt="Grüne Kalkoberfläche mit vertikalen Verläufen"
@@ -324,7 +324,7 @@ export default function Infosheet() {
               </div>
               <figure>
                 <img
-                  src="/infosheet/grosse-goettin-1.webp"
+                  src="/flyer/grosse-goettin-1.webp"
                   width={827}
                   height={651}
                   alt="Weißes Tadelakt-Relief mit kreisförmiger Vertiefung"
@@ -334,7 +334,7 @@ export default function Infosheet() {
               </figure>
               <figure>
                 <img
-                  src="/infosheet/grosse-goettin-2.webp"
+                  src="/flyer/grosse-goettin-2.webp"
                   width={818}
                   height={651}
                   alt="Drei Tadelakt-Reliefs in Weiß, Rot und Schwarz mit kreisförmigen Vertiefungen"
@@ -361,7 +361,7 @@ export default function Infosheet() {
             <div className={styles.quad}>
               <figure>
                 <img
-                  src="/infosheet/i-ging-1.webp"
+                  src="/flyer/i-ging-1.webp"
                   width={827}
                   height={651}
                   alt="Wand aus Tadelakt-Reliefs mit eingeritzten I-Ging-Hexagrammen"
@@ -371,7 +371,7 @@ export default function Infosheet() {
               </figure>
               <figure>
                 <img
-                  src="/infosheet/i-ging-2.webp"
+                  src="/flyer/i-ging-2.webp"
                   width={827}
                   height={642}
                   alt="Ockerfarbenes Tadelakt-Relief mit sechs eingeritzten Streifen"
@@ -456,7 +456,7 @@ export default function Infosheet() {
               </div>
               <figure>
                 <img
-                  src="/infosheet/labyrinth-1.webp"
+                  src="/flyer/labyrinth-1.webp"
                   width={827}
                   height={651}
                   alt="Beiges Tadelakt-Relief mit klassischem Labyrinth"
@@ -466,7 +466,7 @@ export default function Infosheet() {
               </figure>
               <figure>
                 <img
-                  src="/infosheet/labyrinth-2.webp"
+                  src="/flyer/labyrinth-2.webp"
                   width={827}
                   height={642}
                   alt="Dunkles Tadelakt-Relief mit Spiral-Labyrinth auf ziegelrotem Rand"
@@ -527,7 +527,7 @@ export default function Infosheet() {
                 {[1, 2, 3, 4].map((number) => (
                   <figure key={number}>
                     <img
-                      src={`/infosheet/empoert-euch-${number}.webp`}
+                      src={`/flyer/empoert-euch-${number}.webp`}
                       width={394}
                       height={403}
                       alt={`Tadelakt-Relief mit QR-Code, Aufnahme ${number}`}

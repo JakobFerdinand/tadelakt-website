@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('infosheet maps both printed sheets without clipped or broken assets', async ({
+test('flyer maps both printed sheets without clipped or broken assets', async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -13,8 +13,8 @@ test('infosheet maps both printed sheets without clipped or broken assets', asyn
       errors.push(`${response.status()} ${response.url()}`);
   });
   await page.setViewportSize({ width: 1920, height: 1080 });
-  expect((await page.goto('/infosheet/'))?.status()).toBe(200);
-  await expect(page).toHaveTitle(/Infosheet/);
+  expect((await page.goto('/flyer/'))?.status()).toBe(200);
+  await expect(page).toHaveTitle(/Flyer/);
   await expect(page.locator('header, nav, footer')).toHaveCount(0);
   await expect(page.locator('main > section')).toHaveCount(2);
   await page.evaluate(() => document.fonts.ready);
@@ -24,9 +24,7 @@ test('infosheet maps both printed sheets without clipped or broken assets', asyn
         .filter((font) => font.status === 'loaded')
         .map((font) => font.family),
     ),
-  ).toEqual(
-    expect.arrayContaining(['Saans Infosheet', 'Saans Mono Infosheet']),
-  );
+  ).toEqual(expect.arrayContaining(['Saans Flyer', 'Saans Mono Flyer']));
   expect(
     await page.locator('main').evaluate((main) => getComputedStyle(main).color),
   ).toBe('rgb(28, 39, 148)');
@@ -64,7 +62,7 @@ test('infosheet maps both printed sheets without clipped or broken assets', asyn
     const image = images.nth(index);
     await image.scrollIntoViewIfNeeded();
     await image.evaluate((element: HTMLImageElement) => element.decode());
-    expect(await image.getAttribute('src')).toContain(`/infosheet/${name}`);
+    expect(await image.getAttribute('src')).toContain(`/flyer/${name}`);
     expect(
       await image.evaluate(
         (element: HTMLImageElement) => element.naturalWidth > 0,
@@ -74,7 +72,7 @@ test('infosheet maps both printed sheets without clipped or broken assets', asyn
   expect(errors).toEqual([]);
 });
 
-test('infosheet stacks its columns on small screens without overflow', async ({
+test('flyer stacks its columns on small screens without overflow', async ({
   page,
 }) => {
   for (const viewport of [
@@ -83,7 +81,7 @@ test('infosheet stacks its columns on small screens without overflow', async ({
     { width: 820, height: 1180 },
   ]) {
     await page.setViewportSize(viewport);
-    expect((await page.goto('/infosheet/'))?.status()).toBe(200);
+    expect((await page.goto('/flyer/'))?.status()).toBe(200);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -105,8 +103,8 @@ test('infosheet stacks its columns on small screens without overflow', async ({
   }
 });
 
-test('infosheet contact links remain keyboard accessible', async ({ page }) => {
-  await page.goto('/infosheet/');
+test('flyer contact links remain keyboard accessible', async ({ page }) => {
+  await page.goto('/flyer/');
   const phone = page.getByRole('link', { name: '0043 676 6258629' });
   const email = page.getByRole('link', { name: 'M.WEGENSCHIMMEL@GMAIL.COM' });
   await expect(phone).toHaveJSProperty('tabIndex', 0);
