@@ -242,25 +242,6 @@ export default function Flyer() {
             </div>
             <p className={styles.quote}>Wandlung ist das Wesen der Materie.</p>
           </div>
-          <div className={styles.cooperation}>
-            <h2 className={styles.dotTitle}>Cooperation Partners</h2>
-            <ul>
-              <li>Cornelia Wegenschimmel</li>
-              <li>Jakob Wegenschimmel</li>
-              <li>
-                Paula Wegenschimmel &amp; Matthias Warter
-                <p>PamaPama Creative Collective for Photography</p>
-                <p>Communication Design &amp; Interior Architecture</p>
-                <p>based in Salzburg</p>
-                <p>
-                  <a href="mailto:hello@pamapama.com">hello@pamapama.com</a>
-                </p>
-                <p>
-                  <a href="tel:+43662231638">0043 662 231638</a>
-                </p>
-              </li>
-            </ul>
-          </div>
           <div className={styles.contactBar}>
             <a href="tel:+436766258629">
               <FontAwesomeIcon icon={faPhone} fixedWidth />
@@ -540,6 +521,25 @@ export default function Flyer() {
             </div>
           </article>
         </section>
+        <div className={styles.cooperation}>
+          <h2 className={styles.dotTitle}>Cooperation Partners</h2>
+          <ul>
+            <li>Cornelia Wegenschimmel</li>
+            <li>Jakob Wegenschimmel</li>
+            <li>
+              Paula Wegenschimmel &amp; Matthias Warter
+              <p>PamaPama Creative Collective for Photography</p>
+              <p>Communication Design &amp; Interior Architecture</p>
+              <p>based in Salzburg</p>
+              <p>
+                <a href="mailto:hello@pamapama.com">hello@pamapama.com</a>
+              </p>
+              <p>
+                <a href="tel:+43662231638">0043 662 231638</a>
+              </p>
+            </li>
+          </ul>
+        </div>
       </main>
     </>
   );
