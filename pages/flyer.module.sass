@@ -38,7 +38,7 @@
   // Grid and flex items must be allowed to shrink below their content's
   // intrinsic size, or the photographs' pixel widths blow out the tracks.
   .sheet > *, .masthead > *, .material > *, .textures > *, .goettin > *,
-  .quad > *, .empoert > *, .qrRow > *, .brand > *
+  .quad > *, .empoert > *, .qrRow > *, .brand > *, .cooperation > *
     min-width: 0
 
   a
@@ -168,14 +168,19 @@
   letter-spacing: .04em
 
 .cooperation
-  margin-top: 5rem
+  max-width: 104rem
+  margin: 0 auto
+  padding: 2.5rem 4vw 5rem
+  border-top: 1px solid rgb(28 39 148 / .25)
 
   ul
     display: grid
-    gap: 1rem
+    grid-template-columns: repeat(3, 1fr)
+    gap: 1rem 3.5vw
     margin-top: 1.5rem
     padding: 0
     list-style: none
+    align-items: start
 
     li p
       margin-top: .25em
@@ -289,6 +294,16 @@
     .spansFromSecond
       grid-column: 1 / -1
 
+  .work
+    & + .work
+      margin-top: 4.5rem
+
+  .workTitle
+    margin-bottom: 1.75em
+
+  .headline
+    margin-bottom: 1.75em
+
   .quad
     grid-template-columns: 1fr 1fr
 
@@ -296,6 +311,16 @@
   .sheet
     padding-top: 3rem
     padding-bottom: 3.5rem
+
+  .work
+    & + .work
+      margin-top: 3.5rem
+
+  .workTitle
+    margin-bottom: 2em
+
+  .headline
+    margin-bottom: 2em
 
   .masthead
     grid-template-columns: 1fr
@@ -316,6 +341,7 @@
 
   .cooperation
     ul
+      grid-template-columns: 1fr
       gap: 1.25rem
 
   .contactBar

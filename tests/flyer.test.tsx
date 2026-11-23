@@ -30,7 +30,7 @@ test('flyer maps both printed sheets in reading order', () => {
   ).toBeDefined();
   expect(first.getByRole('heading', { name: 'Materialethik' })).toBeDefined();
   expect(
-    first.getByRole('heading', { name: 'Cooperation Partners' }),
+    screen.getByRole('heading', { name: 'Cooperation Partners' }),
   ).toBeDefined();
   expect(sheets[0].textContent).toContain(
     'Wandlung ist das Wesen der Materie.',
