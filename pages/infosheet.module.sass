@@ -1,0 +1,316 @@
+@font-face
+  font-family: 'Saans Infosheet'
+  src: url('/infosheet/fonts/Saans-Regular.woff2') format('woff2')
+  font-style: normal
+  font-weight: 400
+  font-display: swap
+
+@font-face
+  font-family: 'Saans Mono Infosheet'
+  src: url('/infosheet/fonts/SaansMono-Regular.woff2') format('woff2')
+  font-style: normal
+  font-weight: 400
+  font-display: swap
+
+.page
+  background: #fff
+  color: #1c2794
+  font-family: 'Saans Infosheet', Arial, sans-serif
+  font-weight: 400
+  font-synthesis: none
+  line-height: 1.45
+
+  h1, h2, p, figure, address, ul
+    margin: 0
+
+  h1, h2, h3
+    color: inherit
+    font-size: inherit
+    line-height: inherit
+    margin-top: 0
+
+  img
+    display: block
+    width: 100%
+    max-width: 100%
+    height: auto
+
+  // Grid and flex items must be allowed to shrink below their content's
+  // intrinsic size, or the photographs' pixel widths blow out the tracks.
+  .sheet > *, .masthead > *, .material > *, .textures > *, .goettin > *,
+  .quad > *, .empoert > *, .qrRow > *, .brand > *
+    min-width: 0
+
+  a
+    color: inherit
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
+      text-underline-offset: .2em
+
+    &:focus-visible
+      outline: 2px solid currentColor
+      outline-offset: 5px
+
+// Each printed sheet of the flyer maps to one section, stacked in reading
+// order: sheet one with section 1, sheet two with sections 2 to 5.
+.sheet
+  max-width: 104rem
+  margin: 0 auto
+  padding: 4.5rem 4vw 5rem
+
+  & + .sheet
+    border-top: 1px solid rgb(28 39 148 / .25)
+
+// Headings in the flyer are small monospace caps, section numbers sit in
+// filled circles.
+.workTitle, .headline, .dotTitle
+  font-family: 'Saans Mono Infosheet', 'Courier New', monospace
+  font-weight: 400
+  font-size: clamp(.9375rem, 1.1vw, 1.1875rem)
+  letter-spacing: .08em
+  text-transform: uppercase
+  line-height: 1.5
+
+.workTitle
+  display: flex
+  align-items: center
+  gap: .65em
+  margin-bottom: 1.4em
+
+.number
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  flex-shrink: 0
+  width: 1.5em
+  height: 1.5em
+  border-radius: 50%
+  background: currentColor
+
+  span
+    color: #fff
+    font-size: .95em
+
+.headline
+  margin-bottom: 1.2em
+
+  span
+    display: block
+
+.dotTitle
+  display: flex
+  align-items: center
+  gap: .65em
+
+  &::before
+    content: ''
+    flex-shrink: 0
+    width: .6em
+    height: .6em
+    border-radius: 50%
+    background: currentColor
+
+.columnText
+  p
+    text-align: justify
+    hyphens: auto
+
+  p + p
+    margin-top: 1em
+
+.masthead
+  display: grid
+  grid-template-columns: 1.1fr .6fr 1.1fr 1.6fr
+  gap: 2.5rem 3.5vw
+  align-items: start
+
+.portrait
+  img
+    height: auto
+
+.brand
+  .brandName
+    font-family: 'Saans Mono Infosheet', 'Courier New', monospace
+    font-weight: 400
+    font-size: clamp(1.9rem, 3.3vw, 3.9rem)
+    line-height: 1.05
+    letter-spacing: -.01em
+    overflow-wrap: anywhere
+
+    span
+      display: block
+
+  .brandFields
+    display: flex
+    justify-content: space-between
+    gap: 1rem
+    margin-top: .9em
+    font-family: 'Saans Mono Infosheet', 'Courier New', monospace
+    font-size: clamp(.6875rem, .9vw, 1rem)
+    letter-spacing: .06em
+
+.material
+  display: grid
+  grid-template-columns: .6fr 1.1fr .8fr
+  gap: 2.5rem 3.5vw
+  align-items: start
+  margin-top: 5rem
+
+.textures
+  display: grid
+  gap: 2.5rem
+
+.quote
+  font-family: 'Saans Mono Infosheet', 'Courier New', monospace
+  font-size: clamp(.8125rem, 1vw, 1.0625rem)
+  letter-spacing: .04em
+
+.cooperation
+  margin-top: 5rem
+
+  ul
+    display: grid
+    gap: 1rem
+    margin-top: 1.5rem
+    padding: 0
+    list-style: none
+
+    li p
+      margin-top: .25em
+
+    a
+      font-family: 'Saans Mono Infosheet', 'Courier New', monospace
+      font-size: .9em
+      letter-spacing: .04em
+
+.contactBar
+  display: flex
+  flex-wrap: wrap
+  align-items: baseline
+  gap: .75rem 2.5rem
+  justify-content: space-between
+  margin-top: 5rem
+  font-family: 'Saans Mono Infosheet', 'Courier New', monospace
+  font-size: clamp(.6875rem, .85vw, .9375rem)
+  letter-spacing: .06em
+  text-transform: uppercase
+
+  svg
+    margin-right: .5em
+
+  address
+    font-style: normal
+
+// Sheet two reproduces the flyer's four-column work grids: the text and
+// photograph columns keep their printed positions.
+.work
+  & + .work
+    margin-top: 6.5rem
+
+.goettin
+  display: grid
+  grid-template-columns: 1.35fr 1fr 1fr
+  gap: 2.5rem 3.5vw
+  align-items: start
+
+  .columnText
+    grid-row: 1 / 3
+
+  .spansFromSecond
+    grid-column: 2 / 4
+    text-align: justify
+    hyphens: auto
+
+.quad
+  display: grid
+  grid-template-columns: 1fr 1fr .95fr .95fr
+  gap: 2.5rem 3.5vw
+  align-items: start
+
+.empoert
+  display: grid
+  grid-template-columns: 1.45fr 1fr
+  gap: 2.5rem 3.5vw
+  align-items: start
+
+  > p
+    text-align: justify
+    hyphens: auto
+
+.qrRow
+  grid-column: 1
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  gap: 1.5rem
+  margin-top: 1rem
+
+@media (max-width: 1100px)
+  .masthead
+    grid-template-columns: 1fr 1fr
+
+    .brand
+      grid-column: 1 / -1
+      display: flex
+      align-items: baseline
+      justify-content: space-between
+      gap: 2rem
+
+  .material
+    grid-template-columns: 1fr 1fr
+
+    .textures
+      grid-column: 1 / -1
+      grid-template-columns: repeat(3, 1fr)
+
+  .quote
+    grid-column: 1 / -1
+
+  .goettin
+    grid-template-columns: 1fr 1fr
+
+    .columnText
+      grid-row: auto
+      grid-column: 1 / -1
+
+    .spansFromSecond
+      grid-column: 1 / -1
+
+  .quad
+    grid-template-columns: 1fr 1fr
+
+@media (max-width: 640px)
+  .sheet
+    padding-top: 3rem
+    padding-bottom: 3.5rem
+
+  .masthead
+    grid-template-columns: 1fr
+
+  .brand
+    flex-direction: column
+    align-items: flex-start
+
+    .brandFields
+      width: 100%
+
+  .material
+    grid-template-columns: 1fr
+
+  .cooperation
+    ul
+      gap: 1.25rem
+
+  .contactBar
+    flex-direction: column
+    align-items: flex-start
+
+    a, address
+      overflow-wrap: anywhere
+
+  .goettin, .quad, .empoert
+    grid-template-columns: 1fr
+
+  .qrRow
+    grid-template-columns: repeat(2, 1fr)
